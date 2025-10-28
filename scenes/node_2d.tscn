@@ -44,6 +44,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Settings" type="Button" parent="MainBG/Control/ButtonLayout"]
 layout_mode = 2
+focus_mode = 0
 text = "                  "
 icon = ExtResource("3_fws66")
 flat = true
@@ -52,6 +53,7 @@ expand_icon = true
 
 [node name="Wardrobe" type="Button" parent="MainBG/Control/ButtonLayout"]
 layout_mode = 2
+focus_mode = 0
 text = "                  "
 icon = ExtResource("3_fws66")
 flat = true
@@ -60,6 +62,7 @@ expand_icon = true
 
 [node name="Fridge" type="Button" parent="MainBG/Control/ButtonLayout"]
 layout_mode = 2
+focus_mode = 0
 text = "                  "
 icon = ExtResource("3_fws66")
 flat = true
@@ -68,6 +71,7 @@ expand_icon = true
 
 [node name="Back" type="Button" parent="MainBG/Control/ButtonLayout"]
 layout_mode = 2
+focus_mode = 0
 text = "                  "
 icon = ExtResource("3_fws66")
 flat = true

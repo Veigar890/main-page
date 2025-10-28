@@ -60,6 +60,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Shirt" type="Button" parent="MainBG/Control/VBoxContainer"]
 modulate = Color(1, 1, 1, 0.6666667)
 layout_mode = 2
+focus_mode = 0
 text = "         
 
 
@@ -73,6 +74,7 @@ expand_icon = true
 [node name="Skirt" type="Button" parent="MainBG/Control/VBoxContainer"]
 modulate = Color(1, 1, 1, 0.6666667)
 layout_mode = 2
+focus_mode = 0
 text = "         
 
 
@@ -86,6 +88,7 @@ expand_icon = true
 [node name="Accessories" type="Button" parent="MainBG/Control/VBoxContainer"]
 modulate = Color(1, 1, 1, 0.6666667)
 layout_mode = 2
+focus_mode = 0
 text = "         
 
 
@@ -99,6 +102,7 @@ expand_icon = true
 [node name="Shoes" type="Button" parent="MainBG/Control/VBoxContainer"]
 modulate = Color(1, 1, 1, 0.6666667)
 layout_mode = 2
+focus_mode = 0
 text = "         
 
 
@@ -123,6 +127,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Shirt" type="Button" parent="MainBG/Control/VBoxContainer2"]
 layout_mode = 2
+focus_mode = 0
 text = "         
 
 
@@ -135,6 +140,7 @@ expand_icon = true
 
 [node name="Skirt" type="Button" parent="MainBG/Control/VBoxContainer2"]
 layout_mode = 2
+focus_mode = 0
 text = "         
 
 
@@ -147,6 +153,7 @@ expand_icon = true
 
 [node name="Accessories" type="Button" parent="MainBG/Control/VBoxContainer2"]
 layout_mode = 2
+focus_mode = 0
 text = "         
 
 
@@ -159,6 +166,7 @@ expand_icon = true
 
 [node name="Shoes" type="Button" parent="MainBG/Control/VBoxContainer2"]
 layout_mode = 2
+focus_mode = 0
 text = "         
 
 

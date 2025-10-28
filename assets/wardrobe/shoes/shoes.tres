@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WardrobeTextures" load_steps=12 format=3 uid="uid://cnobcbnpbwgbp"]
+
+[ext_resource type="Script" uid="uid://chfthcfee6l62" path="res://scripts/wardrobe_resource.gd" id="1_uq46h"]
+[ext_resource type="Texture2D" uid="uid://bk7skqgfnjnae" path="res://assets/wardrobe/shoes/IMG_4156.PNG" id="2_spch0"]
+[ext_resource type="Texture2D" uid="uid://dyvcj4e3tnciv" path="res://assets/wardrobe/shoes/IMG_4157.PNG" id="3_xb4bs"]
+[ext_resource type="Texture2D" uid="uid://c5uh3dv0nln34" path="res://assets/wardrobe/shoes/IMG_4158.PNG" id="4_eyc47"]
+[ext_resource type="Texture2D" uid="uid://cq4cwvditg65l" path="res://assets/wardrobe/shoes/IMG_4163.PNG" id="5_4m7id"]
+[ext_resource type="Texture2D" uid="uid://mp2h7dedrsfh" path="res://assets/wardrobe/shoes/IMG_4167.PNG" id="6_esw5l"]
+[ext_resource type="Texture2D" uid="uid://buthbx8tkay1r" path="res://assets/wardrobe/shoes/IMG_4168.PNG" id="7_j7wvy"]
+[ext_resource type="Texture2D" uid="uid://yugt0yhr2n5k" path="res://assets/wardrobe/shoes/IMG_4169.PNG" id="8_xparr"]
+[ext_resource type="Texture2D" uid="uid://dqq88uwi0s8u0" path="res://assets/wardrobe/shoes/IMG_4172.PNG" id="9_j6yme"]
+[ext_resource type="Texture2D" uid="uid://7tgc46kdpu6f" path="res://assets/wardrobe/shoes/IMG_4173.PNG" id="10_r3iyl"]
+[ext_resource type="Texture2D" uid="uid://bcrcmjbl0lsxx" path="res://assets/wardrobe/shoes/IMG_4174.PNG" id="11_kofh7"]
+
+[resource]
+script = ExtResource("1_uq46h")
+textures = Array[Texture2D]([ExtResource("2_spch0"), ExtResource("3_xb4bs"), ExtResource("4_eyc47"), ExtResource("5_4m7id"), ExtResource("6_esw5l"), ExtResource("7_j7wvy"), ExtResource("8_xparr"), ExtResource("9_j6yme"), ExtResource("10_r3iyl"), ExtResource("11_kofh7")])
+metadata/_custom_type_script = "uid://chfthcfee6l62"

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WardrobeTextures" load_steps=8 format=3 uid="uid://p4lc2tdmd3r7"]
+
+[ext_resource type="Script" uid="uid://chfthcfee6l62" path="res://scripts/wardrobe_resource.gd" id="1_anmo1"]
+[ext_resource type="Texture2D" uid="uid://b2sftd6ina0rd" path="res://assets/wardrobe/shirt/IMG_4179.PNG" id="2_rspab"]
+[ext_resource type="Texture2D" uid="uid://b4eqj7uuha66a" path="res://assets/wardrobe/shirt/IMG_4189.PNG" id="3_7lqu7"]
+[ext_resource type="Texture2D" uid="uid://5dco4icqon2j" path="res://assets/wardrobe/shirt/IMG_4213.PNG" id="4_5xjki"]
+[ext_resource type="Texture2D" uid="uid://bgb35klfw1u6p" path="res://assets/wardrobe/shirt/IMG_4215.PNG" id="5_24wgx"]
+[ext_resource type="Texture2D" uid="uid://dl58r0jpyuekq" path="res://assets/wardrobe/shirt/IMG_4217.PNG" id="6_bn2fd"]
+[ext_resource type="Texture2D" uid="uid://vmdb124odbt3" path="res://assets/wardrobe/shirt/shirt.png" id="7_4nf65"]
+
+[resource]
+script = ExtResource("1_anmo1")
+textures = Array[Texture2D]([ExtResource("2_rspab"), ExtResource("3_7lqu7"), ExtResource("4_5xjki"), ExtResource("5_24wgx"), ExtResource("6_bn2fd"), ExtResource("7_4nf65")])
+metadata/_custom_type_script = "uid://chfthcfee6l62"

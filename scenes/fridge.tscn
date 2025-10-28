@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c63g47531mikw"]
+[gd_scene load_steps=8 format=3 uid="uid://c63g47531mikw"]
 
 [ext_resource type="Script" uid="uid://c5l126r8ndd4w" path="res://scripts/fridge.gd" id="1_c4248"]
 [ext_resource type="Texture2D" uid="uid://git38kn27621" path="res://assets/tamagotchi background.jpeg" id="2_i0i1l"]
 [ext_resource type="Texture2D" uid="uid://dbxnnh61veom3" path="res://assets/buttons/IMG_4211.PNG" id="3_npr5r"]
+[ext_resource type="Texture2D" uid="uid://c1gxxosiu2prj" path="res://assets/white_noise.png" id="4_npr5r"]
 [ext_resource type="Texture2D" uid="uid://dmff87xk0e7ft" path="res://assets/fridge.png" id="5_3xuj1"]
 [ext_resource type="Texture2D" uid="uid://bwpg057bgeecd" path="res://assets/pets/hamster.png" id="6_i0i1l"]
 [ext_resource type="Texture2D" uid="uid://c6c24i4h21c88" path="res://assets/mat.png" id="7_npr5r"]
@@ -41,10 +42,30 @@ ignore_texture_size = true
 stretch_mode = 4
 metadata/_edit_use_anchors_ = true
 
+[node name="noise" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.60784316)
+position = Vector2(453.99997, 662.00006)
+scale = Vector2(0.23055555, 0.55625)
+texture = ExtResource("4_npr5r")
+
 [node name="Fridge" type="Sprite2D" parent="."]
 position = Vector2(352, 640)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("5_3xuj1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Fridge"]
+anchors_preset = -1
+anchor_left = 0.53300005
+anchor_top = 0.26700002
+anchor_right = 0.69100004
+anchor_bottom = 0.749
+offset_left = -512.45874
+offset_top = -767.88983
+offset_right = -512.0285
+offset_bottom = -768.2418
+
+[node name="TextureRect" type="TextureRect" parent="Fridge/VBoxContainer"]
+layout_mode = 2
 
 [node name="PET" type="Sprite2D" parent="."]
 position = Vector2(184, 1088)

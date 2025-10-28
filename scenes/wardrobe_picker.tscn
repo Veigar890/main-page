@@ -36,9 +36,9 @@ grow_vertical = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.22098215
-anchor_top = 0.254
+anchor_top = 0.24655952
 anchor_right = 0.344
-anchor_bottom = 0.619
+anchor_bottom = 0.6180699
 offset_top = 0.7131653
 offset_right = -0.25601196
 offset_bottom = 0.07312012
@@ -46,6 +46,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="item1" type="TextureRect" parent="MainBG/Wardrobe/Control/left"]
 layout_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 2
 texture = ExtResource("4_hvdd1")
 expand_mode = 4
 
@@ -53,7 +55,7 @@ expand_mode = 4
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.65625
-anchor_top = 0.254
+anchor_top = 0.24562941
 anchor_right = 0.77900004
 anchor_bottom = 0.619
 offset_top = 0.7131653
@@ -63,6 +65,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="item1" type="TextureRect" parent="MainBG/Wardrobe/Control/right"]
 layout_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 2
 texture = ExtResource("4_hvdd1")
 expand_mode = 4
 
@@ -80,6 +84,8 @@ offset_bottom = -0.6308899
 
 [node name="item1" type="TextureRect" parent="MainBG/Wardrobe/Control/middle"]
 layout_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 2
 texture = ExtResource("4_hvdd1")
 expand_mode = 2
 
@@ -97,6 +103,8 @@ offset_bottom = 0.71765137
 
 [node name="item1" type="TextureRect" parent="MainBG/Wardrobe/Control/middle2"]
 layout_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 2
 texture = ExtResource("4_hvdd1")
 expand_mode = 2
 

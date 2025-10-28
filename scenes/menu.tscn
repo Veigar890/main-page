@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cpdh72110uxup"]
+[gd_scene load_steps=9 format=3 uid="uid://cpdh72110uxup"]
 
 [ext_resource type="Script" uid="uid://cvl0e0fxusjfb" path="res://scripts/menu.gd" id="1_l48gv"]
 [ext_resource type="Texture2D" uid="uid://csxp263rd8kow" path="res://assets/square_noise.png" id="2_g3eks"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dn7hhmiudxv5g" path="res://assets/buttons/on_toggle.png" id="3_4hy44"]
 [ext_resource type="Texture2D" uid="uid://4c0jna5pmqad" path="res://assets/buttons/off_toggle.png" id="4_ytr4m"]
 [ext_resource type="Texture2D" uid="uid://dbxnnh61veom3" path="res://assets/buttons/IMG_4211.PNG" id="5_ytr4m"]
+[ext_resource type="Texture2D" uid="uid://m3at2hq23voe" path="res://assets/music_text.PNG" id="6_13sgg"]
+[ext_resource type="Texture2D" uid="uid://cl1m1mwp2ntnt" path="res://assets/audio_text.PNG" id="7_i6lef"]
 
 [node name="Node2D" type="CanvasLayer"]
 script = ExtResource("1_l48gv")
@@ -65,8 +67,20 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_icons/checked = ExtResource("3_4hy44")
 theme_override_icons/unchecked = ExtResource("4_ytr4m")
-text = "MUSIC"
 alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Control/CheckButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.07187499
+anchor_top = -0.0625
+anchor_right = -0.07187499
+anchor_bottom = -0.0625
+offset_right = 240.0
+offset_bottom = 159.0
+texture = ExtResource("6_13sgg")
+expand_mode = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="CheckButton2" type="CheckButton" parent="Control"]
@@ -88,8 +102,21 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_icons/checked = ExtResource("3_4hy44")
 theme_override_icons/unchecked = ExtResource("4_ytr4m")
-text = "AUDIO"
 alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" type="TextureRect" parent="Control/CheckButton2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.07812499
+anchor_top = 1.0694444
+anchor_right = -0.07812499
+anchor_bottom = 1.0694444
+offset_top = -160.0
+offset_right = 240.0
+offset_bottom = -1.0
+texture = ExtResource("7_i6lef")
+expand_mode = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureButton" type="TextureButton" parent="Control"]
