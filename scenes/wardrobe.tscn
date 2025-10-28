@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bg0tcg0glh35b"]
+[gd_scene load_steps=11 format=3 uid="uid://bg0tcg0glh35b"]
 
 [ext_resource type="Texture2D" uid="uid://git38kn27621" path="res://assets/tamagotchi background.jpeg" id="1_31rhj"]
 [ext_resource type="Script" uid="uid://d21ig51o11spn" path="res://scripts/wardrobe.gd" id="1_bhjf3"]
 [ext_resource type="Texture2D" uid="uid://dbxnnh61veom3" path="res://assets/buttons/IMG_4211.PNG" id="2_5o16b"]
 [ext_resource type="Texture2D" uid="uid://bjr8a24c4semj" path="res://assets/square_noise1.png" id="4_bhjf3"]
-[ext_resource type="Theme" uid="uid://b0yroi563dfs0" path="res://assets/font/title.tres" id="4_iqlcr"]
 [ext_resource type="Texture2D" uid="uid://bwpg057bgeecd" path="res://assets/pets/hamster.png" id="5_bp60u"]
 [ext_resource type="Texture2D" uid="uid://vmdb124odbt3" path="res://assets/wardrobe/shirt/shirt.png" id="5_xm6he"]
 [ext_resource type="Texture2D" uid="uid://c0htxbkyf8dnn" path="res://assets/wardrobe/skirt/IMG_4178.PNG" id="6_k1sce"]
@@ -170,27 +169,8 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MainBG/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.31100002
-anchor_top = 0.106000006
-anchor_right = 0.65695554
-anchor_bottom = 0.18775
-offset_left = -128.76367
-offset_top = 0.18400574
-offset_right = 142.03107
-offset_bottom = -0.32000732
-grow_horizontal = 2
-theme = ExtResource("4_iqlcr")
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 40
-text = "WARDROBE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="PET" type="Sprite2D" parent="."]
-position = Vector2(360, 630)
+position = Vector2(434, 580)
 texture = ExtResource("5_bp60u")
 
 [node name="Mat" type="Sprite2D" parent="PET"]
@@ -200,3 +180,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("7_iqlcr")
 
 [connection signal="pressed" from="MainBG/Control/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="MainBG/Control/VBoxContainer2/Shirt" to="." method="_on_shirt_pressed"]
+[connection signal="pressed" from="MainBG/Control/VBoxContainer2/Skirt" to="." method="_on_skirt_pressed"]
+[connection signal="pressed" from="MainBG/Control/VBoxContainer2/Accessories" to="." method="_on_accessories_pressed"]
+[connection signal="pressed" from="MainBG/Control/VBoxContainer2/Shoes" to="." method="_on_shoes_pressed"]

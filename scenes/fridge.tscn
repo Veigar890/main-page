@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c63g47531mikw"]
+[gd_scene load_steps=7 format=3 uid="uid://c63g47531mikw"]
 
 [ext_resource type="Script" uid="uid://c5l126r8ndd4w" path="res://scripts/fridge.gd" id="1_c4248"]
 [ext_resource type="Texture2D" uid="uid://git38kn27621" path="res://assets/tamagotchi background.jpeg" id="2_i0i1l"]
 [ext_resource type="Texture2D" uid="uid://dbxnnh61veom3" path="res://assets/buttons/IMG_4211.PNG" id="3_npr5r"]
-[ext_resource type="Theme" uid="uid://b0yroi563dfs0" path="res://assets/font/title.tres" id="4_cx14s"]
 [ext_resource type="Texture2D" uid="uid://dmff87xk0e7ft" path="res://assets/fridge.png" id="5_3xuj1"]
 [ext_resource type="Texture2D" uid="uid://bwpg057bgeecd" path="res://assets/pets/hamster.png" id="6_i0i1l"]
 [ext_resource type="Texture2D" uid="uid://c6c24i4h21c88" path="res://assets/mat.png" id="7_npr5r"]
@@ -41,25 +40,6 @@ texture_normal = ExtResource("3_npr5r")
 ignore_texture_size = true
 stretch_mode = 4
 metadata/_edit_use_anchors_ = true
-
-[node name="RichTextLabel" type="RichTextLabel" parent="MainBG/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.31100002
-anchor_top = 0.106000006
-anchor_right = 0.65695554
-anchor_bottom = 0.18775
-offset_left = -128.76367
-offset_top = 0.18400574
-offset_right = 142.03107
-offset_bottom = -0.32000732
-grow_horizontal = 2
-theme = ExtResource("4_cx14s")
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 40
-text = "FRIDGE"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Fridge" type="Sprite2D" parent="."]
 position = Vector2(352, 640)

@@ -6,10 +6,7 @@ func _on_settings_pressed() -> void:
 
 
 func _on_wardrobe_pressed() -> void:
-	var wardrobe = load("res://scenes/wardrobe.tscn").instantiate()
-	add_child(wardrobe)
-
+	get_tree().change_scene_to_file("res://scenes/wardrobe.tscn")
 
 func _on_fridge_pressed() -> void:
-	var fridge = load("res://scenes/fridge.tscn").instantiate()
-	add_child(fridge)
+	get_tree().change_scene_to_file("res://scenes/fridge.tscn")
