@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=3 uid="uid://birdppelt44d0"]
+
+[ext_resource type="Script" uid="uid://132a4rq8203l" path="res://scripts/main_script.gd" id="1_04qyp"]
+[ext_resource type="Texture2D" uid="uid://git38kn27621" path="res://assets/tamagotchi background.jpeg" id="2_j7wrs"]
+[ext_resource type="Texture2D" uid="uid://dbxnnh61veom3" path="res://assets/buttons/IMG_4211.PNG" id="3_fws66"]
+[ext_resource type="Texture2D" uid="uid://bwpg057bgeecd" path="res://assets/pets/hamster.png" id="4_hh0fu"]
+[ext_resource type="PackedScene" uid="uid://cpdh72110uxup" path="res://scenes/menu.tscn" id="5_3m5ht"]
+[ext_resource type="Texture2D" uid="uid://c6c24i4h21c88" path="res://assets/mat.png" id="5_j7wrs"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_04qyp")
+metadata/_edit_use_anchors_ = true
+
+[node name="MainBG" type="Sprite2D" parent="."]
+position = Vector2(-296, 0)
+scale = Vector2(1.739, 1.739)
+texture = ExtResource("2_j7wrs")
+centered = false
+
+[node name="Control" type="Control" parent="MainBG"]
+layout_mode = 3
+anchor_left = 0.231
+anchor_right = 0.794
+anchor_bottom = 1.0
+offset_left = 0.19676208
+offset_right = -0.14019775
+offset_bottom = 0.055236816
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonLayout" type="HBoxContainer" parent="MainBG/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07777777
+anchor_top = 0.8
+anchor_right = 0.9111111
+anchor_bottom = 0.91249996
+offset_right = 4.974121
+offset_bottom = -2.8062134
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Settings" type="Button" parent="MainBG/Control/ButtonLayout"]
+layout_mode = 2
+text = "                  "
+icon = ExtResource("3_fws66")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Wardrobe" type="Button" parent="MainBG/Control/ButtonLayout"]
+layout_mode = 2
+text = "                  "
+icon = ExtResource("3_fws66")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Fridge" type="Button" parent="MainBG/Control/ButtonLayout"]
+layout_mode = 2
+text = "                  "
+icon = ExtResource("3_fws66")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Back" type="Button" parent="MainBG/Control/ButtonLayout"]
+layout_mode = 2
+text = "                  "
+icon = ExtResource("3_fws66")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="PET" type="Sprite2D" parent="."]
+position = Vector2(360, 630)
+texture = ExtResource("4_hh0fu")
+
+[node name="Mat" type="Sprite2D" parent="PET"]
+show_behind_parent = true
+position = Vector2(0, 98)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_j7wrs")
+
+[node name="Menu" parent="." instance=ExtResource("5_3m5ht")]
+visible = false
+
+[connection signal="pressed" from="MainBG/Control/ButtonLayout/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MainBG/Control/ButtonLayout/Wardrobe" to="." method="_on_wardrobe_pressed"]
+[connection signal="pressed" from="MainBG/Control/ButtonLayout/Fridge" to="." method="_on_fridge_pressed"]

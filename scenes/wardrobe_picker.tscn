@@ -1,0 +1,97 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvb1p7xknwxfo"]
+
+[ext_resource type="Texture2D" uid="uid://git38kn27621" path="res://assets/tamagotchi background.jpeg" id="1_hvdd1"]
+[ext_resource type="Texture2D" uid="uid://dbxnnh61veom3" path="res://assets/buttons/IMG_4211.PNG" id="2_nflq1"]
+[ext_resource type="Theme" uid="uid://b0yroi563dfs0" path="res://assets/font/title.tres" id="3_o4t5f"]
+[ext_resource type="Texture2D" uid="uid://b6pbyjt42ev51" path="res://assets/wardrobe.png" id="4_uswlu"]
+
+[node name="wardrobe_picker" type="Node2D"]
+
+[node name="MainBG" type="Sprite2D" parent="."]
+position = Vector2(-296, 0)
+scale = Vector2(1.739, 1.739)
+texture = ExtResource("1_hvdd1")
+centered = false
+
+[node name="Control" type="Control" parent="MainBG"]
+layout_mode = 3
+anchor_left = 0.231
+anchor_right = 0.794
+anchor_bottom = 1.0
+offset_left = 0.19676208
+offset_right = -0.14019775
+offset_bottom = 0.055236816
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="back" type="TextureButton" parent="MainBG/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7777778
+anchor_top = 0.8687499
+anchor_right = 0.95600015
+anchor_bottom = 0.96825
+offset_right = -0.32006836
+offset_bottom = 0.6398926
+texture_normal = ExtResource("2_nflq1")
+ignore_texture_size = true
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MainBG/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.31100002
+anchor_top = 0.106000006
+anchor_right = 0.65695554
+anchor_bottom = 0.18775
+offset_left = -128.76367
+offset_top = 0.18400574
+offset_right = 142.03107
+offset_bottom = -0.32000732
+grow_horizontal = 2
+theme = ExtResource("3_o4t5f")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 40
+text = "WARDROBE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Wardrobe" type="Sprite2D" parent="."]
+position = Vector2(360, 680)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_uswlu")
+
+[node name="Control" type="Control" parent="Wardrobe"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -512.0
+offset_top = -768.0
+offset_right = -512.0
+offset_bottom = -768.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="left" type="VBoxContainer" parent="Wardrobe/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.22098215
+anchor_top = 0.2544643
+anchor_right = 0.3046875
+anchor_bottom = 0.59300596
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="right" type="VBoxContainer" parent="Wardrobe/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.65625
+anchor_top = 0.2544643
+anchor_right = 0.73995537
+anchor_bottom = 0.59300596
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
