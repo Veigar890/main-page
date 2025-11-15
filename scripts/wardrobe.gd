@@ -1,44 +1,43 @@
 extends Node2D
 
-# --- Icon nodes ---
-@onready var shirt_icon = $MainBG/Control/VBoxContainer2/Shirt
-@onready var skirt_icon = $MainBG/Control/VBoxContainer2/Skirt
-@onready var accessories_icon = $MainBG/Control/VBoxContainer2/Accessories
-@onready var shoes_icon = $MainBG/Control/VBoxContainer2/Shoes
-
-# --- Optional: default textures ---
-@export var default_shirt: Texture2D
-@export var default_skirt: Texture2D
-@export var default_accessories: Texture2D
-@export var default_shoes: Texture2D
+# --- Node references ---
+@onready var vbox2_shirt_btn = $MainBG/Control/VBoxContainer2/Shirt
+@onready var vbox2_skirt_btn = $MainBG/Control/VBoxContainer2/Skirt
+@onready var vbox2_accessories_btn = $MainBG/Control/VBoxContainer2/Accessories
+@onready var vbox2_shoes_btn = $MainBG/Control/VBoxContainer2/Shoes
 
 func _ready():
-	_update_icons()
+	# Load and display saved selections from Globals
+	_load_saved_selections()
 
-# --- Update icons based on Globals ---
-func _update_icons():
-	shirt_icon.icon = Globals.wardrobe_selection.get("shirt", default_shirt)
-	skirt_icon.icon = Globals.wardrobe_selection.get("skirt", default_skirt)
-	accessories_icon.icon = Globals.wardrobe_selection.get("accessories", default_accessories)
-	shoes_icon.icon = Globals.wardrobe_selection.get("shoes", default_shoes)
+# --- LOAD SAVED SELECTIONS ---
+func _load_saved_selections() -> void:
+	if Globals.wardrobe_selection.has("shirt") and Globals.wardrobe_selection["shirt"] != null:
+		vbox2_shirt_btn.icon = Globals.wardrobe_selection["shirt"]
+	if Globals.wardrobe_selection.has("skirt") and Globals.wardrobe_selection["skirt"] != null:
+		vbox2_skirt_btn.icon = Globals.wardrobe_selection["skirt"]
+	if Globals.wardrobe_selection.has("accessories") and Globals.wardrobe_selection["accessories"] != null:
+		vbox2_accessories_btn.icon = Globals.wardrobe_selection["accessories"]
+	if Globals.wardrobe_selection.has("shoes") and Globals.wardrobe_selection["shoes"] != null:
+		vbox2_shoes_btn.icon = Globals.wardrobe_selection["shoes"]
 
 # --- Open picker scenes ---
 func _on_shirt_pressed() -> void:
 	Globals.selected_item = "shirt"
-	get_tree().change_scene_to_file("res://scenes/wardrobe_picker.tscn")
+	SceneTransition.transition_to_scene("res://scenes/wardrobe_picker.tscn")
 
 func _on_skirt_pressed() -> void:
 	Globals.selected_item = "skirt"
-	get_tree().change_scene_to_file("res://scenes/wardrobe_picker.tscn")
+	SceneTransition.transition_to_scene("res://scenes/wardrobe_picker.tscn")
 
 func _on_accessories_pressed() -> void:
 	Globals.selected_item = "accessories"
-	get_tree().change_scene_to_file("res://scenes/wardrobe_picker.tscn")
+	SceneTransition.transition_to_scene("res://scenes/wardrobe_picker.tscn")
 
 func _on_shoes_pressed() -> void:
 	Globals.selected_item = "shoes"
-	get_tree().change_scene_to_file("res://scenes/wardrobe_picker.tscn")
+	SceneTransition.transition_to_scene("res://scenes/wardrobe_picker.tscn")
 
 
 func _on_back_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/node_2d.tscn")
+	SceneTransition.transition_to_scene("res://scenes/node_2d.tscn")

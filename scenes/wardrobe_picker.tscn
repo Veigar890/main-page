@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvb1p7xknwxfo"]
+[gd_scene load_steps=10 format=3 uid="uid://dvb1p7xknwxfo"]
 
 [ext_resource type="Texture2D" uid="uid://git38kn27621" path="res://assets/tamagotchi background.jpeg" id="1_hvdd1"]
 [ext_resource type="Script" uid="uid://02ehoaqd2ash" path="res://scripts/wardrobe_picker.gd" id="1_nflq1"]
 [ext_resource type="Texture2D" uid="uid://dbxnnh61veom3" path="res://assets/buttons/IMG_4211.PNG" id="2_nflq1"]
-[ext_resource type="Texture2D" uid="uid://vmdb124odbt3" path="res://assets/wardrobe/shirt/shirt.png" id="4_hvdd1"]
-[ext_resource type="Texture2D" uid="uid://b6pbyjt42ev51" path="res://assets/wardrobe.png" id="4_uswlu"]
+[ext_resource type="Texture2D" uid="uid://bxn04vn4we565" path="res://assets/wardrobe.PNG" id="4_hvdd1"]
+[ext_resource type="Texture2D" uid="uid://bjr8a24c4semj" path="res://assets/square_noise1.png" id="4_ykhg3"]
+[ext_resource type="Texture2D" uid="uid://vmdb124odbt3" path="res://assets/wardrobe/shirt/shirt.png" id="5_nflq1"]
+[ext_resource type="Texture2D" uid="uid://c0htxbkyf8dnn" path="res://assets/wardrobe/skirt/IMG_4178.PNG" id="6_kjiga"]
+[ext_resource type="Texture2D" uid="uid://bxetj0uxsidix" path="res://assets/wardrobe/accessories/collar.png" id="7_e68uj"]
+[ext_resource type="Texture2D" uid="uid://bk7skqgfnjnae" path="res://assets/wardrobe/shoes/IMG_4156.PNG" id="8_bhoqj"]
 
 [node name="wardrobe_picker" type="Node2D"]
 script = ExtResource("1_nflq1")
@@ -15,154 +19,265 @@ scale = Vector2(1.739, 1.739)
 texture = ExtResource("1_hvdd1")
 centered = false
 
-[node name="Wardrobe" type="Sprite2D" parent="MainBG"]
-position = Vector2(377.2283, 391.02933)
-scale = Vector2(0.4025302, 0.4025302)
-texture = ExtResource("4_uswlu")
-
-[node name="Control" type="Control" parent="MainBG/Wardrobe"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -512.0
-offset_top = -768.0
-offset_right = -512.0
-offset_bottom = -768.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="left" type="VBoxContainer" parent="MainBG/Wardrobe/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.22098215
-anchor_top = 0.24655952
-anchor_right = 0.344
-anchor_bottom = 0.6180699
-offset_top = 0.7131653
-offset_right = -0.25601196
-offset_bottom = 0.07312012
-metadata/_edit_use_anchors_ = true
-
-[node name="item1" type="TextureRect" parent="MainBG/Wardrobe/Control/left"]
-layout_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 2
-texture = ExtResource("4_hvdd1")
-expand_mode = 4
-
-[node name="right" type="VBoxContainer" parent="MainBG/Wardrobe/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.65625
-anchor_top = 0.24562941
-anchor_right = 0.77900004
-anchor_bottom = 0.619
-offset_top = 0.7131653
-offset_right = 0.018249512
-offset_bottom = 0.07312012
-metadata/_edit_use_anchors_ = true
-
-[node name="item1" type="TextureRect" parent="MainBG/Wardrobe/Control/right"]
-layout_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 2
-texture = ExtResource("4_hvdd1")
-expand_mode = 4
-
-[node name="middle" type="HBoxContainer" parent="MainBG/Wardrobe/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.374
-anchor_top = 0.252
-anchor_right = 0.624
-anchor_bottom = 0.333
-offset_left = 0.45254517
-offset_top = -0.50061035
-offset_right = 0.16680908
-offset_bottom = -0.6308899
-
-[node name="item1" type="TextureRect" parent="MainBG/Wardrobe/Control/middle"]
-layout_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 2
-texture = ExtResource("4_hvdd1")
-expand_mode = 2
-
-[node name="middle2" type="HBoxContainer" parent="MainBG/Wardrobe/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.374
-anchor_top = 0.53300005
-anchor_right = 0.624
-anchor_bottom = 0.61300004
-offset_left = 0.45254517
-offset_top = -0.68811035
-offset_right = 0.16680908
-offset_bottom = 0.71765137
-
-[node name="item1" type="TextureRect" parent="MainBG/Wardrobe/Control/middle2"]
-layout_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 2
-texture = ExtResource("4_hvdd1")
-expand_mode = 2
-
-[node name="Control" type="Control" parent="MainBG"]
-layout_mode = 3
-anchor_left = 0.231
-anchor_right = 0.794
-anchor_bottom = 1.0
-offset_left = 0.19676208
-offset_right = -0.14019775
-offset_bottom = 0.05517578
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="back" type="TextureButton" parent="MainBG/Control"]
+[node name="back" type="TextureButton" parent="MainBG"]
 z_index = 2
-layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.7777778
 anchor_top = 0.8687499
 anchor_right = 0.95600015
 anchor_bottom = 0.96825
-offset_right = -0.32006836
-offset_bottom = 0.6398926
+offset_left = -66.406494
+offset_top = -26.979065
+offset_right = -66.72656
+offset_bottom = -26.339172
 texture_normal = ExtResource("2_nflq1")
 ignore_texture_size = true
 stretch_mode = 4
 metadata/_edit_use_anchors_ = true
 
-[node name="prev" type="TextureButton" parent="MainBG/Control"]
-layout_mode = 1
+[node name="next" type="TextureButton" parent="MainBG"]
 anchors_preset = -1
-anchor_left = 0.19444449
-anchor_top = 0.19531256
-anchor_right = 0.3726668
-anchor_bottom = 0.29481262
-offset_right = -0.32006836
-offset_bottom = 0.6398926
-texture_normal = ExtResource("2_nflq1")
-ignore_texture_size = true
-stretch_mode = 4
-metadata/_edit_use_anchors_ = true
-
-[node name="next" type="TextureButton" parent="MainBG/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.6166667
-anchor_top = 0.1953125
-anchor_right = 0.794889
-anchor_bottom = 0.29481256
-offset_right = -0.32006836
-offset_bottom = 0.6398926
+anchor_left = 0.67800003
+anchor_top = 0.136
+anchor_right = 0.77800006
+anchor_bottom = 0.23600002
+offset_left = 0.12954712
+offset_top = -0.038513184
+offset_right = 0.13513184
+offset_bottom = 0.23342896
 texture_normal = ExtResource("2_nflq1")
 ignore_texture_size = true
 stretch_mode = 4
 flip_h = true
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="MainBG/Control/back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="MainBG/Control/prev" to="." method="_on_prev_pressed"]
-[connection signal="pressed" from="MainBG/Control/next" to="." method="_on_next_pressed"]
+[node name="prev" type="TextureButton" parent="MainBG"]
+anchors_preset = -1
+anchor_left = 0.36
+anchor_top = 0.135
+anchor_right = 0.46
+anchor_bottom = 0.23600002
+offset_left = -1.0151978
+offset_top = 1.2725525
+offset_right = -1.0096436
+offset_bottom = 0.80844116
+texture_normal = ExtResource("2_nflq1")
+ignore_texture_size = true
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Wardrobe" type="Sprite2D" parent="."]
+position = Vector2(430, 654)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_hvdd1")
+
+[node name="row1" type="HBoxContainer" parent="Wardrobe"]
+offset_left = -300.0
+offset_top = -406.24997
+offset_right = 312.0
+offset_bottom = -256.25003
+
+[node name="item1" type="Button" parent="Wardrobe/row1"]
+layout_mode = 2
+text = "                                 "
+icon = ExtResource("5_nflq1")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="row2" type="HBoxContainer" parent="Wardrobe"]
+offset_left = -300.0
+offset_top = -192.50003
+offset_right = 299.99994
+offset_bottom = -42.50009
+
+[node name="item1" type="Button" parent="Wardrobe/row2"]
+layout_mode = 2
+text = "                                 "
+icon = ExtResource("5_nflq1")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="row3" type="HBoxContainer" parent="Wardrobe"]
+offset_left = -300.0
+offset_top = 21.249985
+offset_right = 299.99994
+offset_bottom = 171.24992
+
+[node name="item1" type="Button" parent="Wardrobe/row3"]
+layout_mode = 2
+text = "                                 "
+icon = ExtResource("5_nflq1")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="row4" type="HBoxContainer" parent="Wardrobe"]
+offset_left = -300.0
+offset_top = 234.99994
+offset_right = 299.99994
+offset_bottom = 384.99988
+
+[node name="item1" type="Button" parent="Wardrobe/row4"]
+layout_mode = 2
+text = "                                 "
+icon = ExtResource("5_nflq1")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Wardrobe"]
+anchors_preset = -1
+anchor_left = 0.072544634
+anchor_top = 0.33600596
+anchor_right = 0.20028573
+anchor_bottom = 0.7317708
+offset_left = -684.2857
+offset_top = -918.9623
+offset_right = -590.8069
+offset_bottom = -732.8572
+grow_vertical = 2
+theme_override_constants/separation = 70
+metadata/_edit_use_anchors_ = true
+
+[node name="Shirt" type="Button" parent="Wardrobe/VBoxContainer"]
+modulate = Color(1, 1, 1, 0.6666667)
+layout_mode = 2
+focus_mode = 0
+text = "         
+
+
+
+
+
+"
+icon = ExtResource("4_ykhg3")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Skirt" type="Button" parent="Wardrobe/VBoxContainer"]
+modulate = Color(1, 1, 1, 0.6666667)
+layout_mode = 2
+focus_mode = 0
+text = "         
+
+
+
+
+
+"
+icon = ExtResource("4_ykhg3")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Accessories" type="Button" parent="Wardrobe/VBoxContainer"]
+modulate = Color(1, 1, 1, 0.6666667)
+layout_mode = 2
+focus_mode = 0
+text = "         
+
+
+
+
+
+"
+icon = ExtResource("4_ykhg3")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Shoes" type="Button" parent="Wardrobe/VBoxContainer"]
+modulate = Color(1, 1, 1, 0.6666667)
+layout_mode = 2
+focus_mode = 0
+text = "         
+
+
+
+
+
+"
+icon = ExtResource("4_ykhg3")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Wardrobe"]
+anchors_preset = -1
+anchor_top = 0.25000003
+anchor_right = 0.23344447
+anchor_bottom = 0.75
+offset_left = -610.0
+offset_top = -786.85706
+offset_right = -624.7611
+offset_bottom = -760.85693
+grow_vertical = 2
+theme_override_constants/separation = 70
+metadata/_edit_use_anchors_ = true
+
+[node name="Shirt" type="Button" parent="Wardrobe/VBoxContainer2"]
+layout_mode = 2
+focus_mode = 0
+text = "         
+
+
+
+
+
+"
+icon = ExtResource("5_nflq1")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Skirt" type="Button" parent="Wardrobe/VBoxContainer2"]
+layout_mode = 2
+focus_mode = 0
+text = "         
+
+
+
+
+
+"
+icon = ExtResource("6_kjiga")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Accessories" type="Button" parent="Wardrobe/VBoxContainer2"]
+layout_mode = 2
+focus_mode = 0
+text = "         
+
+
+
+
+
+"
+icon = ExtResource("7_e68uj")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Shoes" type="Button" parent="Wardrobe/VBoxContainer2"]
+layout_mode = 2
+focus_mode = 0
+text = "         
+
+
+
+
+
+"
+icon = ExtResource("8_bhoqj")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="MainBG/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="MainBG/next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="MainBG/prev" to="." method="_on_prev_pressed"]
