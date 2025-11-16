@@ -6,6 +6,7 @@ const PREFERENCES_PATH := "user://preferences.cfg"
 const SETTINGS_SECTION := "settings"
 const WARDROBE_SECTION := "wardrobe"
 const LEVEL_SECTION := "level"
+const FEED_COUNT_SECTION := "feed_counts"
 
 # --- SAVE SETTINGS ---
 func save_settings(music_enabled: bool, audio_enabled: bool) -> void:
@@ -174,3 +175,53 @@ func load_level_data() -> Dictionary:
 		"level": level,
 		"exp": exp_value
 	}
+
+# --- SAVE FEED COUNTS ---
+func save_feed_counts(feed_counts: Dictionary) -> void:
+	var config = ConfigFile.new()
+	
+	# Load existing config if it exists
+	if FileAccess.file_exists(PREFERENCES_PATH):
+		var load_error = config.load(PREFERENCES_PATH)
+		if load_error != OK:
+			push_error("Failed to load preferences: %s" % error_string(load_error))
+	
+	# Save all feed counts
+	for food_index in feed_counts.keys():
+		config.set_value(FEED_COUNT_SECTION, str(food_index), feed_counts[food_index])
+	
+	# Save to file
+	var save_error = config.save(PREFERENCES_PATH)
+	if save_error != OK:
+		push_error("Failed to save feed counts: %s" % error_string(save_error))
+
+# --- LOAD FEED COUNTS ---
+func load_feed_counts() -> Dictionary:
+	var feed_counts: Dictionary = {}
+	
+	if not FileAccess.file_exists(PREFERENCES_PATH):
+		return feed_counts
+	
+	var config = ConfigFile.new()
+	var load_error = config.load(PREFERENCES_PATH)
+	if load_error != OK:
+		push_error("Failed to load preferences: %s" % error_string(load_error))
+		return feed_counts
+	
+	# Load all feed counts from the section
+	if config.has_section(FEED_COUNT_SECTION):
+		var keys = config.get_section_keys(FEED_COUNT_SECTION)
+		for key in keys:
+			var food_index = int(key)
+			var feed_count = config.get_value(FEED_COUNT_SECTION, key, 0)
+			if feed_count is int and feed_count >= 0:
+				feed_counts[food_index] = feed_count
+	
+	return feed_counts
+
+# --- INCREMENT FEED COUNT ---
+func increment_feed_count(food_index: int) -> void:
+	var feed_counts = load_feed_counts()
+	var current_count = feed_counts.get(food_index, 0)
+	feed_counts[food_index] = current_count + 1
+	save_feed_counts(feed_counts)

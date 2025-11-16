@@ -115,6 +115,10 @@ func _prepare_drag_data() -> Variant:
 	var items_per_page = fridge_ref.items_per_page
 	var food_index: int = current_page * items_per_page + item_index
 	
+	# Check if this food item can still be fed (max 3 feeds)
+	if not Globals.can_feed_food(food_index):
+		return null  # Item has reached max feeds
+	
 	# Get food arrays from fridge
 	var all_foods = fridge_ref.all_foods
 	var all_food_spritesheets = fridge_ref.all_food_spritesheets

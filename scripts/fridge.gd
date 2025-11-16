@@ -245,16 +245,20 @@ func _on_item_pressed(item_index: int) -> void:
 	if food_index >= all_foods.size() or food_index >= all_food_spritesheets.size():
 		return
 	
+	# Check if this food item can still be fed (max 3 feeds)
+	if not Globals.can_feed_food(food_index):
+		return  # Item has reached max feeds
+	
 	# Get the selected food's SpriteFrames
 	var selected_food_frames: SpriteFrames = all_food_spritesheets[food_index]
 	if not selected_food_frames:
 		return
 	
 	# Start eating sequence
-	_start_eating_sequence(selected_food_frames)
+	_start_eating_sequence(selected_food_frames, food_index)
 
 # --- Start eating sequence ---
-func _start_eating_sequence(food_frames: SpriteFrames) -> void:
+func _start_eating_sequence(food_frames: SpriteFrames, food_index: int = -1) -> void:
 	is_eating = true
 	
 	# Disable all item buttons during eating
@@ -322,8 +326,13 @@ func _start_eating_sequence(food_frames: SpriteFrames) -> void:
 	food_sprite.visible = false
 	food_sprite.sprite_frames = null
 	
-	# Re-enable item buttons
+	# Increment feed count for this food item
+	if food_index >= 0:
+		Globals.increment_feed_count(food_index)
+	
+	# Re-enable item buttons and update their states
 	_enable_items()
+	_apply_level_unlocking()  # This will also check feed counts
 	
 	is_eating = false
 
@@ -359,11 +368,13 @@ func _apply_level_unlocking() -> void:
 		# Check if item is unlocked: food_index < unlocked_count
 		var is_unlocked = food_index < unlocked_count
 		
-		# Set opacity and disable state: 50% opacity and disabled if locked, 100% opacity and enabled if unlocked
-		if is_unlocked:
-			item.modulate = Color(1, 1, 1, 1.0)
-			item.disabled = false
-		else:
+		# Check if item has reached max feeds (3)
+		var feed_count = Globals.get_feed_count(food_index)
+		var is_exhausted = feed_count >= 3
+		
+		# Set opacity and disable state
+		if not is_unlocked:
+			# Locked by level: 50% opacity and disabled
 			item.modulate = Color(1, 1, 1, 0.5)
 			item.disabled = true
 			has_locked_items = true
@@ -371,6 +382,14 @@ func _apply_level_unlocking() -> void:
 			var required_level = (food_index / items_per_page) + 1
 			if unlock_level == 0 or required_level < unlock_level:
 				unlock_level = required_level
+		elif is_exhausted:
+			# Exhausted (reached 3 feeds): 50% opacity and disabled
+			item.modulate = Color(1, 1, 1, 0.5)
+			item.disabled = true
+		else:
+			# Unlocked and not exhausted: 100% opacity and enabled
+			item.modulate = Color(1, 1, 1, 1.0)
+			item.disabled = false
 	
 	# Update unlock label
 	if unlock_label:
@@ -423,9 +442,13 @@ func _on_drop_on_pet(_position: Vector2, data: Variant) -> void:
 	if food_index >= all_food_spritesheets.size():
 		return
 	
+	# Check if this food item can still be fed (max 3 feeds)
+	if not Globals.can_feed_food(food_index):
+		return  # Item has reached max feeds
+	
 	var selected_food_frames: SpriteFrames = all_food_spritesheets[food_index]
 	if not selected_food_frames:
 		return
 	
 	# Start eating sequence
-	_start_eating_sequence(selected_food_frames)
+	_start_eating_sequence(selected_food_frames, food_index)

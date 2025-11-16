@@ -22,6 +22,9 @@ var player_level: int = 1
 var player_exp: int = 0  # Current EXP
 var exp_per_level: int = 100  # EXP needed per level (can be adjusted)
 
+# Feed counts per food item (food_index -> feed_count)
+var food_feed_counts: Dictionary = {}
+
 func _ready():
 	# Ensure pet status is IDLE on startup
 	pet_status = Pet.PetStatus.IDLE
@@ -42,6 +45,9 @@ func _load_preferences() -> void:
 	var level_data = Preferences.load_level_data()
 	player_level = level_data.get("level", 1)
 	player_exp = level_data.get("exp", 0)
+	
+	# Load feed counts
+	food_feed_counts = Preferences.load_feed_counts()
 
 # --- SAVE WARDROBE SELECTION ---
 func save_wardrobe_selection(category: String, texture: Texture2D) -> void:
@@ -89,3 +95,17 @@ func add_exp(amount: int) -> void:
 # --- GET EXP PROGRESS (0.0 to 1.0) ---
 func get_exp_progress() -> float:
 	return float(player_exp) / float(exp_per_level)
+
+# --- GET FEED COUNT FOR FOOD ITEM ---
+func get_feed_count(food_index: int) -> int:
+	return food_feed_counts.get(food_index, 0)
+
+# --- INCREMENT FEED COUNT FOR FOOD ITEM ---
+func increment_feed_count(food_index: int) -> void:
+	var current_count = food_feed_counts.get(food_index, 0)
+	food_feed_counts[food_index] = current_count + 1
+	Preferences.increment_feed_count(food_index)
+
+# --- CHECK IF FOOD ITEM CAN BE FED (max 3 feeds) ---
+func can_feed_food(food_index: int) -> bool:
+	return get_feed_count(food_index) < 3

@@ -124,7 +124,7 @@ label_settings = SubResource("LabelSettings_3m5ht")
 horizontal_alignment = 1
 
 [node name="Bargraph" type="Sprite2D" parent="MainBG/Control"]
-position = Vector2(207.01553, 64.40482)
+position = Vector2(211.61586, 64.40483)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("9_08kqv")
 
@@ -133,6 +133,7 @@ visible = false
 
 [node name="PET" parent="." instance=ExtResource("7_hh0fu")]
 position = Vector2(360, 704)
+frame_progress = 0.0
 
 [connection signal="pressed" from="MainBG/Control/ButtonLayout/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MainBG/Control/ButtonLayout/Wardrobe" to="." method="_on_wardrobe_pressed"]
