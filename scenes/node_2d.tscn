@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://birdppelt44d0"]
+[gd_scene load_steps=13 format=3 uid="uid://birdppelt44d0"]
 
 [ext_resource type="Script" uid="uid://132a4rq8203l" path="res://scripts/main_script.gd" id="1_fws66"]
 [ext_resource type="Texture2D" uid="uid://git38kn27621" path="res://assets/tamagotchi background.jpeg" id="2_j7wrs"]
@@ -6,7 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://d28f8v6uxbhhe" path="res://assets/buttons/IMG_4617.PNG" id="4_3m5ht"]
 [ext_resource type="PackedScene" uid="uid://cpdh72110uxup" path="res://scenes/menu.tscn" id="5_3m5ht"]
 [ext_resource type="Texture2D" uid="uid://dvnuic24rirmy" path="res://assets/buttons/IMG_4615.PNG" id="5_dubn7"]
+[ext_resource type="Texture2D" uid="uid://d3em270pwusal" path="res://assets/pets/progressbar.png" id="6_3m5ht"]
+[ext_resource type="Texture2D" uid="uid://cvcmhby314wvc" path="res://assets/pets/progressbar_fill.png" id="7_dubn7"]
 [ext_resource type="PackedScene" uid="uid://cq0r740318qwh" path="res://scenes/pet.tscn" id="7_hh0fu"]
+[ext_resource type="FontFile" uid="uid://cetju42ogsk0m" path="res://assets/font/Minecraft.ttf" id="8_dubn7"]
+[ext_resource type="Texture2D" uid="uid://b4nilf3qf66c6" path="res://assets/bargraph.png" id="9_08kqv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3m5ht"]
+font = ExtResource("8_dubn7")
+font_size = 60
+font_color = Color(0.32119694, 0.14753628, 4.813075e-08, 1)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_fws66")
@@ -79,10 +88,45 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="MainBG/Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ProgressBar" type="TextureProgressBar" parent="MainBG/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.19000001
+anchor_top = 0.22900002
+anchor_right = 0.813
+anchor_bottom = 0.33100003
+offset_left = 0.114997864
+offset_top = 43.05922
+offset_right = 258.1736
+offset_bottom = 117.9816
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+value = 30.0
+texture_under = ExtResource("6_3m5ht")
+texture_progress = ExtResource("7_dubn7")
+
+[node name="Level" type="Label" parent="MainBG/Control/ProgressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -137.8499
+offset_top = -15.048889
+offset_right = 140.15009
+offset_bottom = 44.95111
+grow_horizontal = 2
+grow_vertical = 2
+text = "LEVEL 10"
+label_settings = SubResource("LabelSettings_3m5ht")
+horizontal_alignment = 1
+
+[node name="Bargraph" type="Sprite2D" parent="MainBG/Control"]
+position = Vector2(207.01553, 64.40482)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("9_08kqv")
 
 [node name="Menu" parent="." instance=ExtResource("5_3m5ht")]
 visible = false

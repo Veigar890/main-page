@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c63g47531mikw"]
+[gd_scene load_steps=9 format=3 uid="uid://c63g47531mikw"]
 
 [ext_resource type="Script" uid="uid://c5l126r8ndd4w" path="res://scripts/fridge.gd" id="1_c4248"]
 [ext_resource type="Texture2D" uid="uid://git38kn27621" path="res://assets/tamagotchi background.jpeg" id="2_i0i1l"]
@@ -6,9 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://ctgeyvfe1hi24" path="res://assets/fridge.png" id="4_npr5r"]
 [ext_resource type="Texture2D" uid="uid://ia8744dr5gs1" path="res://assets/foods/IMG_4684.PNG" id="5_cx14s"]
 [ext_resource type="PackedScene" uid="uid://cq0r740318qwh" path="res://scenes/pet.tscn" id="6_i0i1l"]
+[ext_resource type="FontFile" uid="uid://cetju42ogsk0m" path="res://assets/font/Minecraft.ttf" id="6_npr5r"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_v6xy7"]
-animations = []
+[sub_resource type="LabelSettings" id="LabelSettings_cx14s"]
+font = ExtResource("6_npr5r")
+font_size = 22
+font_color = Color(0, 0, 0, 1)
 
 [node name="Fridge" type="Node2D"]
 script = ExtResource("1_c4248")
@@ -123,13 +126,26 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
+[node name="lock_label" type="Label" parent="Fridge"]
+anchors_preset = -1
+anchor_left = 0.544
+anchor_top = 0.058000002
+anchor_right = 0.85800004
+anchor_bottom = 0.113000005
+offset_left = -303.328
+offset_top = -384.036
+offset_right = -249.64603
+offset_bottom = -383.846
+text = "Unlocks at Level 2      "
+label_settings = SubResource("LabelSettings_cx14s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PET2" parent="." instance=ExtResource("6_i0i1l")]
 position = Vector2(175, 1114)
 
 [node name="food" type="AnimatedSprite2D" parent="PET2"]
 visible = false
 position = Vector2(11, 2)
-sprite_frames = SubResource("SpriteFrames_v6xy7")
-animation = &""
 
 [connection signal="pressed" from="MainBG/Control/back" to="." method="_on_back_pressed"]

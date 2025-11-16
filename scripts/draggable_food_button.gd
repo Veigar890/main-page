@@ -19,6 +19,10 @@ func _gui_input(event: InputEvent) -> void:
 	if fridge_ref and fridge_ref.is_eating:
 		return
 	
+	# Check if item is locked (disabled)
+	if disabled:
+		return
+	
 	# Track mouse press for drag detection
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
@@ -100,6 +104,10 @@ func _prepare_drag_data() -> Variant:
 	
 	# Check if eating is in progress
 	if fridge_ref and fridge_ref.is_eating:
+		return null
+	
+	# Check if item is locked (disabled)
+	if disabled:
 		return null
 	
 	# Get food index (directly access properties since we know they exist)

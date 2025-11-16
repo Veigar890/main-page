@@ -16,6 +16,10 @@ extends Node2D
 @onready var vbox2_skirt_btn = $Wardrobe/VBoxContainer2/Skirt
 @onready var vbox2_accessories_btn = $Wardrobe/VBoxContainer2/Accessories
 @onready var vbox2_shoes_btn = $Wardrobe/VBoxContainer2/Shoes
+@onready var row1_lock_label: Label = $Wardrobe/row1_lock_label
+@onready var row2_lock_label: Label = $Wardrobe/row2_lock_label
+@onready var row3_lock_label: Label = $Wardrobe/row3_lock_label
+@onready var row4_lock_label: Label = $Wardrobe/row4_lock_label
 
 # --- Variables ---
 var selected_category: String = ""
@@ -25,6 +29,7 @@ var all_images: Array = []
 var category_to_row: Dictionary = {}
 var category_images: Dictionary = {}  # Store images per category
 var category_pages: Dictionary = {}  # Store current page per category
+var category_to_lock_label: Dictionary = {}  # Map category to lock label
 
 func _ready():
 	# Initialize category to row mapping
@@ -33,6 +38,14 @@ func _ready():
 		"skirt": row2,
 		"accessories": row3,
 		"shoes": row4
+	}
+	
+	# Initialize category to lock label mapping
+	category_to_lock_label = {
+		"shirt": row1_lock_label,
+		"skirt": row2_lock_label,
+		"accessories": row3_lock_label,
+		"shoes": row4_lock_label
 	}
 	
 	# Initialize pages for each category
@@ -51,6 +64,9 @@ func _ready():
 	_set_row_enabled(row2, false, 0.2)
 	_set_row_enabled(row3, false, 0.2)
 	_set_row_enabled(row4, false, 0.2)
+	
+	# Update lock labels for all categories after initial load
+	call_deferred("_update_all_lock_labels")
 	
 	# Initialize VBoxContainer buttons to very low opacity (no category selected yet)
 	if vbox_shirt_btn:
@@ -152,6 +168,10 @@ func _populate_category_row(category: String, page_index: int) -> void:
 			item_node.set_meta("original_scale", item_node.scale)
 			item_node.set_meta("original_offset_top", item_node.offset_top)
 			
+			# Store item index for level checking
+			var item_index = start_index + i
+			item_node.set_meta("item_index", item_index)
+			
 			row.add_child(item_node)
 			# Bind for pressed when using Button
 			item_node.connect("pressed", Callable(self, "_on_item_button_pressed").bind(item_node, category))
@@ -160,6 +180,9 @@ func _populate_category_row(category: String, page_index: int) -> void:
 			item_node.mouse_exited.connect(_on_item_mouse_exited.bind(item_node))
 		else:
 			push_error("'item1' must be a Button in row: %s" % [row.name])
+	
+	# Apply level-based unlocking after populating
+	_apply_level_unlocking(category)
 
 
 # --- DISPLAY A PAGE OF TEXTURES FOR SELECTED CATEGORY ---
@@ -170,7 +193,7 @@ func _show_page(page_index: int):
 	# Update the page for this category
 	category_pages[selected_category] = page_index
 	
-	# Populate the selected category's row
+	# Populate the selected category's row (this will call _apply_level_unlocking)
 	_populate_category_row(selected_category, page_index)
 	
 	# Update all_images for pagination calculations
@@ -265,6 +288,109 @@ func _on_item_clicked(texture: Texture2D, category: String) -> void:
 	_update_vbox2_button(category, texture)
 
 
+# --- APPLY LEVEL-BASED UNLOCKING ---
+func _apply_level_unlocking(category: String) -> void:
+	if not category_images.has(category):
+		return
+	
+	var row = category_to_row[category]
+	if not row:
+		return
+	
+	# Check if this category is selected (to determine base opacity)
+	var is_category_selected = (category == selected_category)
+	var base_opacity = 1.0 if is_category_selected else 0.2
+	
+	var _images = category_images[category]
+	var category_page = category_pages.get(category, 0)
+	var start_index = category_page * items_per_page
+	var end_index = min(start_index + items_per_page, _images.size())
+	
+	# First, find the next item to unlock across ALL items in this category
+	var next_unlock_item_index: int = -1
+	var next_unlock_level: int = 0
+	for item_index in range(_images.size()):
+		var unlock_level = item_index + 1  # 0-indexed items, 1-indexed levels
+		if unlock_level == Globals.player_level + 1:
+			next_unlock_item_index = item_index
+			next_unlock_level = unlock_level
+			break
+	
+	var next_locked_item: Button = null
+	
+	# Iterate through all items in the row (current page items)
+	for i in range(row.get_child_count()):
+		var item = row.get_child(i)
+		if not item is Button:
+			continue
+		
+		# Get item index (global index in the category)
+		var item_index = item.get_meta("item_index", start_index + i)
+		
+		# Check if item is on current page
+		var is_on_current_page = item_index >= start_index and item_index < end_index
+		
+		# Check if item is unlocked: item_index < player_level (0-indexed items, 1-indexed levels)
+		# Item at index 0 unlocks at level 1, index 1 at level 2, etc.
+		var is_unlocked = item_index < Globals.player_level
+		
+		# Set opacity and disable state based on unlock status and category selection
+		if is_unlocked:
+			# Unlocked items: full opacity if category selected, base opacity if not
+			item.modulate = Color(1, 1, 1, base_opacity)
+			item.disabled = not is_category_selected
+		else:
+			# Locked items: 50% of base opacity
+			item.modulate = Color(1, 1, 1, base_opacity * 0.5)
+			item.disabled = true
+		
+		# Check if this item is the next one to unlock and it's on the current page
+		if item_index == next_unlock_item_index and is_on_current_page:
+			next_locked_item = item
+	
+	# Update lock label for this category
+	var lock_label = category_to_lock_label.get(category)
+	if lock_label:
+		# Only show label if:
+		# 1. The next item to unlock exists
+		# 2. It's on the current page (next_locked_item is not null)
+		# 3. The category is selected (so the row is visible)
+		if next_locked_item and next_unlock_level > 0 and is_category_selected:
+			# Position label at the X position of the next locked item
+			# Use call_deferred to ensure layout is complete before positioning
+			call_deferred("_update_lock_label_position", lock_label, next_locked_item, next_unlock_level)
+		else:
+			# Not the next item to unlock, not on current page, or category not selected, hide label
+			lock_label.visible = false
+
+# --- Update lock label position (called deferred to ensure layout is complete) ---
+func _update_lock_label_position(lock_label: Label, item: Button, unlock_level: int) -> void:
+	if not lock_label or not item or not is_instance_valid(item):
+		return
+	
+	# Wait one more frame to ensure HBoxContainer layout is fully complete
+	await get_tree().process_frame
+	
+	if not is_instance_valid(item) or not is_instance_valid(lock_label):
+		return
+	
+	# Both label and row are children of Wardrobe, so convert item's global position to Wardrobe's local space
+	var wardrobe_node = get_node_or_null("Wardrobe")
+	if not wardrobe_node:
+		return
+	
+	var item_global_pos = item.global_position
+	var item_local_pos = wardrobe_node.to_local(item_global_pos)
+	# Set X to match item's X (relative to Wardrobe), keep Y the same
+	lock_label.position.x = item_local_pos.x
+	lock_label.text = "Unlocks at Level %d" % unlock_level
+	lock_label.visible = true
+
+# --- Update all lock labels (called after initial load) ---
+func _update_all_lock_labels() -> void:
+	for category in category_to_row.keys():
+		_apply_level_unlocking(category)
+
 # --- NEXT/PREV PAGE HANDLERS ---
 func _on_prev_pressed() -> void:
 	if selected_category.is_empty():
@@ -343,6 +469,9 @@ func _select_category(category: String) -> void:
 	# Show the current page for this category (items already loaded)
 	current_page = category_pages[category]
 	_show_page(current_page)
+	
+	# Update lock labels for all categories after page is shown (selected one shows, others hide)
+	call_deferred("_update_all_lock_labels")
 
 # --- UPDATE VBOX2 BUTTON ICON ---
 func _update_vbox2_button(category: String, texture: Texture2D) -> void:

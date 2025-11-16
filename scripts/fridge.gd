@@ -7,6 +7,7 @@ extends Node2D
 @onready var item4: Button = $Fridge/item4
 @onready var prev_btn: TextureButton = $MainBG/prev
 @onready var next_btn: TextureButton = $MainBG/next
+@onready var unlock_label: Label = $Fridge/lock_label
 
 # --- Variables ---
 var all_foods: Array[Texture2D] = []  # Store first frame textures from spritesheets
@@ -16,6 +17,12 @@ var items_per_page: int = 4
 var is_eating: bool = false  # Prevent multiple eating actions
 
 func _ready() -> void:
+	# Ensure food sprite doesn't try to play empty animation
+	var food_sprite = get_node_or_null("PET2/food")
+	if food_sprite and food_sprite is AnimatedSprite2D:
+		food_sprite.stop()
+		food_sprite.visible = false
+	
 	_load_foods()
 	_show_page(0)
 	_update_page_buttons()
@@ -127,6 +134,9 @@ func _show_page(page_index: int) -> void:
 			item.visible = false
 	
 	current_page = page_index
+	
+	# Apply level-based unlocking after showing page
+	_apply_level_unlocking()
 
 # --- Update prev/next button visibility ---
 func _update_page_buttons() -> void:
@@ -213,7 +223,7 @@ func _setup_item_drag(button: Button, item_index: int) -> void:
 		button.setup_drag(self, item_index)
 
 # --- Handle item GUI input (for drag and drop) ---
-func _on_item_gui_input(_event: InputEvent, item_index: int, button: Button) -> void:
+func _on_item_gui_input(_event: InputEvent, _item_index: int, _button: Button) -> void:
 	# This is now handled by the draggable button script
 	pass
 
@@ -221,6 +231,15 @@ func _on_item_gui_input(_event: InputEvent, item_index: int, button: Button) -> 
 func _on_item_pressed(item_index: int) -> void:
 	if is_eating:
 		return  # Prevent eating during eating animation
+	
+	# Check if the clicked item is disabled (locked)
+	var items: Array[Button] = [item1, item2, item3, item4]
+	if item_index >= items.size():
+		return
+	
+	var clicked_item = items[item_index]
+	if clicked_item and clicked_item.disabled:
+		return  # Item is locked, don't allow use
 	
 	var food_index: int = current_page * items_per_page + item_index
 	if food_index >= all_foods.size() or food_index >= all_food_spritesheets.size():
@@ -315,6 +334,52 @@ func _enable_items() -> void:
 		if item:
 			item.disabled = false
 
+# --- APPLY LEVEL-BASED UNLOCKING ---
+func _apply_level_unlocking() -> void:
+	if all_foods.is_empty():
+		if unlock_label:
+			unlock_label.visible = false
+		return
+	
+	# Calculate unlock threshold: level 1 unlocks items 0-3, level 2 unlocks 4-7, etc.
+	var unlocked_count: int = Globals.player_level * 4
+	
+	var items: Array[Button] = [item1, item2, item3, item4]
+	var start_index: int = current_page * items_per_page
+	var has_locked_items: bool = false
+	var unlock_level: int = 0
+	
+	for i in range(items.size()):
+		var item: Button = items[i]
+		if not item or not item.visible:
+			continue
+		
+		var food_index: int = start_index + i
+		
+		# Check if item is unlocked: food_index < unlocked_count
+		var is_unlocked = food_index < unlocked_count
+		
+		# Set opacity and disable state: 50% opacity and disabled if locked, 100% opacity and enabled if unlocked
+		if is_unlocked:
+			item.modulate = Color(1, 1, 1, 1.0)
+			item.disabled = false
+		else:
+			item.modulate = Color(1, 1, 1, 0.5)
+			item.disabled = true
+			has_locked_items = true
+			# Calculate which level unlocks this item: (food_index / 4) + 1
+			var required_level = (food_index / items_per_page) + 1
+			if unlock_level == 0 or required_level < unlock_level:
+				unlock_level = required_level
+	
+	# Update unlock label
+	if unlock_label:
+		if has_locked_items and unlock_level > 0:
+			unlock_label.text = "Unlocks at Level %d" % unlock_level
+			unlock_label.visible = true
+		else:
+			unlock_label.visible = false
+
 # --- Setup pet drop zone ---
 func _setup_pet_drop_zone() -> void:
 	var pet_node = get_node_or_null("PET2")
@@ -338,7 +403,7 @@ func _setup_pet_drop_zone() -> void:
 		drop_zone.set_fridge_ref(self)
 
 # --- Check if data can be dropped on pet ---
-func _can_drop_on_pet(position: Vector2, data: Variant) -> bool:
+func _can_drop_on_pet(_position: Vector2, data: Variant) -> bool:
 	if is_eating:
 		return false
 	
@@ -347,7 +412,7 @@ func _can_drop_on_pet(position: Vector2, data: Variant) -> bool:
 	return false
 
 # --- Handle drop on pet ---
-func _on_drop_on_pet(position: Vector2, data: Variant) -> void:
+func _on_drop_on_pet(_position: Vector2, data: Variant) -> void:
 	if is_eating:
 		return
 	

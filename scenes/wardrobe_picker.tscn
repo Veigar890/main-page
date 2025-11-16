@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dvb1p7xknwxfo"]
+[gd_scene load_steps=12 format=3 uid="uid://dvb1p7xknwxfo"]
 
 [ext_resource type="Texture2D" uid="uid://git38kn27621" path="res://assets/tamagotchi background.jpeg" id="1_hvdd1"]
 [ext_resource type="Script" uid="uid://02ehoaqd2ash" path="res://scripts/wardrobe_picker.gd" id="1_nflq1"]
@@ -9,6 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://c0htxbkyf8dnn" path="res://assets/wardrobe/skirt/IMG_4178.PNG" id="6_kjiga"]
 [ext_resource type="Texture2D" uid="uid://bxetj0uxsidix" path="res://assets/wardrobe/accessories/collar.png" id="7_e68uj"]
 [ext_resource type="Texture2D" uid="uid://bk7skqgfnjnae" path="res://assets/wardrobe/shoes/IMG_4156.PNG" id="8_bhoqj"]
+[ext_resource type="FontFile" uid="uid://cetju42ogsk0m" path="res://assets/font/Minecraft.ttf" id="10_kjiga"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e68uj"]
+font = ExtResource("10_kjiga")
+font_size = 22
 
 [node name="wardrobe_picker" type="Node2D"]
 script = ExtResource("1_nflq1")
@@ -277,6 +282,66 @@ icon = ExtResource("8_bhoqj")
 flat = true
 icon_alignment = 1
 expand_icon = true
+
+[node name="row1_lock_label" type="Label" parent="Wardrobe"]
+anchors_preset = -1
+anchor_left = 0.544
+anchor_top = 0.058000002
+anchor_right = 0.85800004
+anchor_bottom = 0.113000005
+offset_left = -855.62744
+offset_top = -524.8023
+offset_right = -939.16345
+offset_bottom = -586.2823
+text = "Unlocks at Level 2      "
+label_settings = SubResource("LabelSettings_e68uj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="row2_lock_label" type="Label" parent="Wardrobe"]
+anchors_preset = -1
+anchor_left = 0.544
+anchor_top = 0.058000002
+anchor_right = 0.85800004
+anchor_bottom = 0.113000005
+offset_left = -855.62744
+offset_top = -304.8023
+offset_right = -939.16345
+offset_bottom = -366.28232
+text = "Unlocks at Level 2      "
+label_settings = SubResource("LabelSettings_e68uj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="row3_lock_label" type="Label" parent="Wardrobe"]
+anchors_preset = -1
+anchor_left = 0.544
+anchor_top = 0.058000002
+anchor_right = 0.85800004
+anchor_bottom = 0.113000005
+offset_left = -855.62744
+offset_top = -93.37374
+offset_right = -939.16345
+offset_bottom = -154.85374
+text = "Unlocks at Level 2      "
+label_settings = SubResource("LabelSettings_e68uj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="row4_lock_label" type="Label" parent="Wardrobe"]
+anchors_preset = -1
+anchor_left = 0.544
+anchor_top = 0.058000002
+anchor_right = 0.85800004
+anchor_bottom = 0.113000005
+offset_left = -855.62744
+offset_top = 123.7691
+offset_right = -939.16345
+offset_bottom = 62.289093
+text = "Unlocks at Level 2      "
+label_settings = SubResource("LabelSettings_e68uj")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="MainBG/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="MainBG/next" to="." method="_on_next_pressed"]

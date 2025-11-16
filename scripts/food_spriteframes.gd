@@ -191,7 +191,7 @@ static func _detect_frame_height(texture_height: int, frame_width: int) -> int:
 	
 	# Try all possible row counts (1 to 20 rows max)
 	for rows in range(1, min(21, texture_height + 1)):
-		var candidate_height = int(texture_height / rows)
+		var candidate_height = int(float(texture_height) / float(rows))
 		if candidate_height <= 0:
 			continue
 		# Check if it divides evenly
@@ -258,7 +258,7 @@ static func guess_animation_speed_default(texture: Texture2D, columns: int, fram
 	if not texture:
 		return default_fps
 	if frame_size.x > 0 and frame_size.y > 0 and columns > 0:
-		var rows = max(1, int(texture.get_height() / frame_size.y))
+		var rows = max(1, int(float(texture.get_height()) / float(frame_size.y)))
 		var frame_count = max(1, columns * rows)
 		# choose fps proportional to frame count but clamped
 		var guessed = float(clamp(int(round(float(frame_count) / 4.0)), 4, 24))

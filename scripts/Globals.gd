@@ -17,6 +17,11 @@ var audio_enabled: bool = true
 # Pet status (can be accessed from any scene)
 var pet_status: Pet.PetStatus = Pet.PetStatus.IDLE
 
+# Player level (starts at 1)
+var player_level: int = 1
+var player_exp: int = 0  # Current EXP
+var exp_per_level: int = 100  # EXP needed per level (can be adjusted)
+
 func _ready():
 	# Ensure pet status is IDLE on startup
 	pet_status = Pet.PetStatus.IDLE
@@ -32,6 +37,11 @@ func _load_preferences() -> void:
 	
 	# Load wardrobe selections
 	wardrobe_selection = Preferences.load_wardrobe_selections()
+	
+	# Load player level and EXP
+	var level_data = Preferences.load_level_data()
+	player_level = level_data.get("level", 1)
+	player_exp = level_data.get("exp", 0)
 
 # --- SAVE WARDROBE SELECTION ---
 func save_wardrobe_selection(category: String, texture: Texture2D) -> void:
@@ -45,3 +55,25 @@ func save_all_wardrobe_selections() -> void:
 # --- SAVE SETTINGS ---
 func save_settings() -> void:
 	Preferences.save_settings(music_enabled, audio_enabled)
+
+# --- SAVE LEVEL DATA ---
+func save_level_data() -> void:
+	Preferences.save_level_data(player_level, player_exp)
+
+# --- SET LEVEL (for manual testing) ---
+func set_level(level: int) -> void:
+	if level < 1:
+		level = 1
+	player_level = level
+	player_exp = 0  # Reset EXP when manually setting level
+	save_level_data()
+
+# --- ADD EXP ---
+func add_exp(amount: int) -> void:
+	player_exp += amount
+	# Check for level up (manual for now, but EXP is tracked)
+	save_level_data()
+
+# --- GET EXP PROGRESS (0.0 to 1.0) ---
+func get_exp_progress() -> float:
+	return float(player_exp) / float(exp_per_level)

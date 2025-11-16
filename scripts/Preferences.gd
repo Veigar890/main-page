@@ -5,6 +5,7 @@ extends Node
 const PREFERENCES_PATH := "user://preferences.cfg"
 const SETTINGS_SECTION := "settings"
 const WARDROBE_SECTION := "wardrobe"
+const LEVEL_SECTION := "level"
 
 # --- SAVE SETTINGS ---
 func save_settings(music_enabled: bool, audio_enabled: bool) -> void:
@@ -119,3 +120,57 @@ func load_wardrobe_selections() -> Dictionary:
 					wardrobe[category] = texture
 	
 	return wardrobe
+
+# --- SAVE LEVEL DATA ---
+func save_level_data(level: int, exp_value: int) -> void:
+	var config = ConfigFile.new()
+	
+	# Load existing config if it exists
+	if FileAccess.file_exists(PREFERENCES_PATH):
+		var load_error = config.load(PREFERENCES_PATH)
+		if load_error != OK:
+			push_error("Failed to load preferences: %s" % error_string(load_error))
+	
+	# Save level and EXP
+	config.set_value(LEVEL_SECTION, "player_level", level)
+	config.set_value(LEVEL_SECTION, "player_exp", exp_value)
+	
+	# Save to file
+	var save_error = config.save(PREFERENCES_PATH)
+	if save_error != OK:
+		push_error("Failed to save level data: %s" % error_string(save_error))
+
+# --- LOAD LEVEL DATA ---
+func load_level_data() -> Dictionary:
+	var default_data = {
+		"level": 1,
+		"exp": 0
+	}
+	
+	if not FileAccess.file_exists(PREFERENCES_PATH):
+		return default_data
+	
+	var config = ConfigFile.new()
+	var load_error = config.load(PREFERENCES_PATH)
+	if load_error != OK:
+		push_error("Failed to load preferences: %s" % error_string(load_error))
+		return default_data
+	
+	# Load level and EXP with defaults
+	var level = 1
+	var exp_value = 0
+	
+	if config.has_section_key(LEVEL_SECTION, "player_level"):
+		level = config.get_value(LEVEL_SECTION, "player_level", 1)
+		if level < 1:
+			level = 1
+	
+	if config.has_section_key(LEVEL_SECTION, "player_exp"):
+		exp_value = config.get_value(LEVEL_SECTION, "player_exp", 0)
+		if exp_value < 0:
+			exp_value = 0
+	
+	return {
+		"level": level,
+		"exp": exp_value
+	}
