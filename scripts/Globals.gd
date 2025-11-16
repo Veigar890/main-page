@@ -70,8 +70,20 @@ func set_level(level: int) -> void:
 
 # --- ADD EXP ---
 func add_exp(amount: int) -> void:
+	if amount <= 0:
+		return
+	
 	player_exp += amount
-	# Check for level up (manual for now, but EXP is tracked)
+	
+	# Check for level ups and handle excess EXP
+	while player_exp >= exp_per_level:
+		# Calculate excess EXP
+		var excess_exp = player_exp - exp_per_level
+		# Level up
+		player_level += 1
+		# Set EXP to the excess (carry over to new level)
+		player_exp = excess_exp
+	
 	save_level_data()
 
 # --- GET EXP PROGRESS (0.0 to 1.0) ---
