@@ -7,6 +7,7 @@ const SETTINGS_SECTION := "settings"
 const WARDROBE_SECTION := "wardrobe"
 const LEVEL_SECTION := "level"
 const FEED_COUNT_SECTION := "feed_counts"
+const TASKS_SECTION := "tasks"
 
 # --- SAVE SETTINGS ---
 func save_settings(music_enabled: bool, audio_enabled: bool) -> void:
@@ -225,3 +226,65 @@ func increment_feed_count(food_index: int) -> void:
 	var current_count = feed_counts.get(food_index, 0)
 	feed_counts[food_index] = current_count + 1
 	save_feed_counts(feed_counts)
+
+# --- SAVE TASKS ---
+func save_tasks(academic_tasks: Array, household_tasks: Array, errands_tasks: Array, total_points: int) -> void:
+	var config = ConfigFile.new()
+	
+	# Load existing config if it exists
+	if FileAccess.file_exists(PREFERENCES_PATH):
+		var load_error = config.load(PREFERENCES_PATH)
+		if load_error != OK:
+			push_error("Failed to load preferences: %s" % error_string(load_error))
+	
+	# Save tasks arrays (ConfigFile can save arrays and dictionaries)
+	config.set_value(TASKS_SECTION, "academic_tasks", academic_tasks)
+	config.set_value(TASKS_SECTION, "household_tasks", household_tasks)
+	config.set_value(TASKS_SECTION, "errands_tasks", errands_tasks)
+	config.set_value(TASKS_SECTION, "total_points", total_points)
+	
+	# Save to file
+	var save_error = config.save(PREFERENCES_PATH)
+	if save_error != OK:
+		push_error("Failed to save tasks: %s" % error_string(save_error))
+
+# --- LOAD TASKS ---
+func load_tasks() -> Dictionary:
+	var default_data = {
+		"academic_tasks": [],
+		"household_tasks": [],
+		"errands_tasks": [],
+		"total_points": 0
+	}
+	
+	if not FileAccess.file_exists(PREFERENCES_PATH):
+		return default_data
+	
+	var config = ConfigFile.new()
+	var load_error = config.load(PREFERENCES_PATH)
+	if load_error != OK:
+		push_error("Failed to load preferences: %s" % error_string(load_error))
+		return default_data
+	
+	# Load tasks with defaults
+	var academic_tasks = config.get_value(TASKS_SECTION, "academic_tasks", [])
+	var household_tasks = config.get_value(TASKS_SECTION, "household_tasks", [])
+	var errands_tasks = config.get_value(TASKS_SECTION, "errands_tasks", [])
+	var total_points = config.get_value(TASKS_SECTION, "total_points", 0)
+	
+	# Ensure arrays are valid
+	if not academic_tasks is Array:
+		academic_tasks = []
+	if not household_tasks is Array:
+		household_tasks = []
+	if not errands_tasks is Array:
+		errands_tasks = []
+	if not total_points is int or total_points < 0:
+		total_points = 0
+	
+	return {
+		"academic_tasks": academic_tasks,
+		"household_tasks": household_tasks,
+		"errands_tasks": errands_tasks,
+		"total_points": total_points
+	}

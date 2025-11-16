@@ -1,0 +1,89 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwl8rly8xysoq"]
+
+[ext_resource type="Script" uid="uid://c2dnbpnd8ivxa" path="res://TaskItem.gd" id="1"]
+[ext_resource type="FontFile" path="res://fonts/GamePausedFont.tres" id="3"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0.784314, 0.784314, 0.784314, 0)
+
+[node name="TaskItem" type="Control"]
+custom_minimum_size = Vector2(950, 250)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -150.0
+offset_bottom = -1720.0
+mouse_filter = 1
+script = ExtResource("1")
+
+[node name="TaskPanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(920, 250)
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 10.0
+offset_bottom = 10.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("1")
+
+[node name="TaskContent" type="HBoxContainer" parent="TaskPanel"]
+custom_minimum_size = Vector2(900, 220)
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+scale = Vector2(0.84, 1)
+theme_override_constants/separation = 20
+
+[node name="TaskInfo" type="VBoxContainer" parent="TaskPanel/TaskContent"]
+custom_minimum_size = Vector2(640, 230)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="TaskNameLabel" type="Label" parent="TaskPanel/TaskContent/TaskInfo"]
+custom_minimum_size = Vector2(700, 120)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 24
+text = "Task Name"
+clip_text = true
+max_lines_visible = 4
+
+[node name="DeadlineLabel" type="Label" parent="TaskPanel/TaskContent/TaskInfo"]
+custom_minimum_size = Vector2(700, 90)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 24
+text = "Deadline: YYYY-MM-DD HH:MM"
+max_lines_visible = 3
+
+[node name="Spacer" type="Control" parent="TaskPanel/TaskContent"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="ActionButton" type="TextureButton" parent="TaskPanel/TaskContent"]
+custom_minimum_size = Vector2(180, 130)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+stretch_mode = 3
+
+[node name="ButtonLabel" type="Label" parent="TaskPanel/TaskContent/ActionButton"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_fonts/font = ExtResource("3")
+horizontal_alignment = 1
+vertical_alignment = 1

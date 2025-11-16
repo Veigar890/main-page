@@ -1,0 +1,331 @@
+[gd_scene load_steps=28 format=3 uid="uid://cfyhft1vjhhuh"]
+
+[ext_resource type="Texture2D" uid="uid://bp7rwpqs0jahe" path="res://progress bars/0%.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://de7hx70smajc3" path="res://progress bars/100%.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://cbkl5uirfkt1w" path="res://buttons/add button normal.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://b1fupewl7r4mk" path="res://buttons/back button hover.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://ba5ssair7mthy" path="res://buttons/back button pressed.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://cr1nyp0nsn2t7" path="res://buttons/back button normal.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://cfumhfjquy16g" path="res://buttons/add button hover.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://bnk8s8xvutqqn" path="res://buttons/add button pressed.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://bbi0t7dkl3j0p" path="res://bg/bg2.jpg" id="9"]
+[ext_resource type="Script" uid="uid://c84yyeujkdxao" path="res://TaskDetailPage.gd" id="10"]
+[ext_resource type="Texture2D" uid="uid://6axa23rv45h2" path="res://words/schoolwork.png" id="11"]
+[ext_resource type="FontFile" path="res://fonts/GamePausedFont.tres" id="15"]
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.0196078, 0.294118, 0.0980392, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.858824, 0.192157, 0.192157, 0.933333)
+shadow_size = 10
+shadow_offset = Vector2(5, 10)
+
+[sub_resource type="StyleBoxFlat" id="4"]
+bg_color = Color(0.784314, 0.784314, 0.784314, 0)
+
+[sub_resource type="StyleBoxFlat" id="2"]
+bg_color = Color(0.823529, 0.823529, 0.823529, 1)
+
+[sub_resource type="StyleBoxFlat" id="5"]
+bg_color = Color(0.784314, 0.784314, 0.784314, 0)
+
+[sub_resource type="StyleBoxFlat" id="3"]
+bg_color = Color(0.823529, 0.823529, 0.823529, 1)
+
+[sub_resource type="StyleBoxFlat" id="8"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="7"]
+bg_color = Color(0.784314, 0.862745, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="6"]
+bg_color = Color(0.901961, 0.901961, 0.901961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="11"]
+bg_color = Color(1, 0.372549, 0.372549, 1)
+
+[sub_resource type="StyleBoxFlat" id="10"]
+bg_color = Color(1, 0.372549, 0.372549, 1)
+
+[sub_resource type="StyleBoxFlat" id="9"]
+bg_color = Color(1, 0.372549, 0.372549, 1)
+
+[sub_resource type="StyleBoxFlat" id="14"]
+bg_color = Color(0.666667, 1, 0.431373, 1)
+
+[sub_resource type="StyleBoxFlat" id="13"]
+bg_color = Color(0.666667, 1, 0.431373, 1)
+
+[sub_resource type="StyleBoxFlat" id="12"]
+bg_color = Color(0.666667, 1, 0.431373, 1)
+
+[sub_resource type="StyleBoxFlat" id="15"]
+bg_color = Color(1, 0.54902, 0, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.705882, 0, 0, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+shadow_color = Color(0, 0, 0, 0.705882)
+shadow_size = 15
+shadow_offset = Vector2(5, 5)
+
+[node name="TaskDetailPage" type="Node2D"]
+scale = Vector2(0.66500837, 0.6648602)
+script = ExtResource("10")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 2048.0
+scale = Vector2(0.94, 0.94)
+texture = ExtResource("9")
+
+[node name="CategoryProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -37.0
+offset_top = 130.0
+offset_right = 736.0
+offset_bottom = 453.0
+scale = Vector2(1.5, 0.5)
+nine_patch_stretch = true
+stretch_margin_left = 50
+stretch_margin_top = 50
+stretch_margin_right = 50
+stretch_margin_bottom = 50
+texture_under = ExtResource("1")
+texture_progress = ExtResource("2")
+
+[node name="CategoryPercentLabel" type="Label" parent="CategoryProgressBar"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 34.0
+offset_top = 66.0
+offset_right = -39.0
+offset_bottom = -157.0
+scale = Vector2(1, 2)
+theme_override_fonts/font = ExtResource("15")
+theme_override_font_sizes/font_size = 24
+text = "0%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CategoryLabel" type="TextureRect" parent="."]
+offset_left = 135.0
+offset_top = 63.0
+offset_right = 1159.0
+offset_bottom = 183.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("11")
+
+[node name="AddButton" type="TextureButton" parent="."]
+offset_left = 680.0
+offset_top = 1650.0
+offset_right = 1180.0
+offset_bottom = 2150.0
+scale = Vector2(0.36, 0.36)
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3")
+texture_pressed = ExtResource("8")
+texture_hover = ExtResource("7")
+
+[node name="BackButton" type="TextureButton" parent="."]
+offset_left = 880.0
+offset_top = 1650.0
+offset_right = 1380.0
+offset_bottom = 2150.0
+scale = Vector2(0.36, 0.36)
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("6")
+texture_pressed = ExtResource("5")
+texture_hover = ExtResource("4")
+
+[node name="TaskScrollContainer" type="ScrollContainer" parent="."]
+offset_left = 54.0
+offset_top = 270.0
+offset_right = 1026.0
+offset_bottom = 1620.0
+
+[node name="TaskList" type="VBoxContainer" parent="TaskScrollContainer"]
+custom_minimum_size = Vector2(972, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 70
+
+[node name="TaskInputPopup" type="Panel" parent="."]
+offset_left = 140.0
+offset_top = 400.0
+offset_right = 940.0
+offset_bottom = 940.0
+theme_override_styles/panel = SubResource("1")
+
+[node name="PopupContent" type="VBoxContainer" parent="TaskInputPopup"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 810.0
+offset_bottom = 534.0
+scale = Vector2(0.9, 0.9)
+theme_override_constants/separation = 30
+
+[node name="TaskNameLabel" type="Label" parent="TaskInputPopup/PopupContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0784314, 0.392157, 0.156863, 1)
+theme_override_fonts/font = ExtResource("15")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("4")
+text = "Task Name"
+
+[node name="TaskNameInput" type="LineEdit" parent="TaskInputPopup/PopupContent"]
+custom_minimum_size = Vector2(720, 80)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("15")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("2")
+text = "Enter task name"
+placeholder_text = "Enter task name"
+
+[node name="DueDateLabel" type="Label" parent="TaskInputPopup/PopupContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0784314, 0.392157, 0.156863, 1)
+theme_override_fonts/font = ExtResource("15")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("5")
+text = "Due date & time"
+
+[node name="DateTimeRow" type="HBoxContainer" parent="TaskInputPopup/PopupContent"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="DueDateInput" type="LineEdit" parent="TaskInputPopup/PopupContent/DateTimeRow"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("15")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("3")
+text = "YYYY-MM-DD HH:MM"
+placeholder_text = "YYYY-MM-DD HH:MM"
+
+[node name="AMPMSelector" type="OptionButton" parent="TaskInputPopup/PopupContent/DateTimeRow"]
+custom_minimum_size = Vector2(250, 120)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_constants/h_separation = 10
+theme_override_fonts/font = ExtResource("15")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("8")
+theme_override_styles/pressed = SubResource("7")
+theme_override_styles/hover = SubResource("6")
+
+[node name="PopupButtons" type="HBoxContainer" parent="TaskInputPopup/PopupContent"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 2
+
+[node name="CancelButton" type="Button" parent="TaskInputPopup/PopupContent/PopupButtons"]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("15")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("11")
+theme_override_styles/pressed = SubResource("10")
+theme_override_styles/hover = SubResource("9")
+text = "Cancel"
+
+[node name="ConfirmAddButton" type="Button" parent="TaskInputPopup/PopupContent/PopupButtons"]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("15")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("14")
+theme_override_styles/pressed = SubResource("13")
+theme_override_styles/hover = SubResource("12")
+text = "Add"
+
+[node name="CongratsPopup" type="Panel" parent="."]
+offset_left = 120.299225
+offset_top = 760.0
+offset_right = 820.2992
+offset_bottom = 1160.0
+scale = Vector2(1.2, 1.2)
+theme_override_styles/panel = SubResource("15")
+
+[node name="PopupContent" type="VBoxContainer" parent="CongratsPopup"]
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.032
+anchor_top = 0.125
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.599998
+offset_right = -50.0
+offset_bottom = -50.0
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="CongratsLabel" type="Label" parent="CongratsPopup/PopupContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("15")
+theme_override_font_sizes/font_size = 35
+text = "CONGRATULATIONS!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PointsEarnedLabel" type="Label" parent="CongratsPopup/PopupContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("15")
+theme_override_font_sizes/font_size = 23
+text = "You earned 50 points!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MessageLabel" type="Label" parent="CongratsPopup/PopupContent"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("15")
+text = "Come spend it to take care of your pet!"
+horizontal_alignment = 1
+vertical_alignment = 1

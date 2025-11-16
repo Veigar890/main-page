@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://birdppelt44d0"]
+[gd_scene load_steps=14 format=3 uid="uid://birdppelt44d0"]
 
 [ext_resource type="Script" uid="uid://132a4rq8203l" path="res://scripts/main_script.gd" id="1_fws66"]
 [ext_resource type="Texture2D" uid="uid://git38kn27621" path="res://assets/tamagotchi background.jpeg" id="2_j7wrs"]
+[ext_resource type="Texture2D" uid="uid://bjypsbghag38v" path="res://assets/buttons/IMG_4764.png" id="3_f6ptj"]
 [ext_resource type="Texture2D" uid="uid://dbxnnh61veom3" path="res://assets/buttons/IMG_4211.PNG" id="3_fws66"]
 [ext_resource type="Texture2D" uid="uid://d28f8v6uxbhhe" path="res://assets/buttons/IMG_4617.PNG" id="4_3m5ht"]
 [ext_resource type="PackedScene" uid="uid://cpdh72110uxup" path="res://scenes/menu.tscn" id="5_3m5ht"]
@@ -56,7 +57,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 focus_mode = 0
 text = "                  "
-icon = ExtResource("3_fws66")
+icon = ExtResource("3_f6ptj")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -102,6 +103,7 @@ offset_bottom = 117.9816
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
+max_value = 50.0
 value = 30.0
 texture_under = ExtResource("6_3m5ht")
 texture_progress = ExtResource("7_dubn7")
@@ -123,10 +125,19 @@ text = "LEVEL 10"
 label_settings = SubResource("LabelSettings_3m5ht")
 horizontal_alignment = 1
 
-[node name="Bargraph" type="Sprite2D" parent="MainBG/Control"]
-position = Vector2(211.61586, 64.40483)
+[node name="Bargraph" type="TextureButton" parent="MainBG/Control"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 124.20932
+offset_top = 27.60207
+offset_right = 1642.323
+offset_bottom = 1039.6781
+grow_horizontal = 0
+grow_vertical = 0
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("9_08kqv")
+texture_normal = ExtResource("9_08kqv")
+ignore_texture_size = true
+stretch_mode = 4
 
 [node name="Menu" parent="." instance=ExtResource("5_3m5ht")]
 visible = false
@@ -138,3 +149,4 @@ frame_progress = 0.0
 [connection signal="pressed" from="MainBG/Control/ButtonLayout/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MainBG/Control/ButtonLayout/Wardrobe" to="." method="_on_wardrobe_pressed"]
 [connection signal="pressed" from="MainBG/Control/ButtonLayout/Fridge" to="." method="_on_fridge_pressed"]
+[connection signal="pressed" from="MainBG/Control/Bargraph" to="." method="_on_bargraph_pressed"]

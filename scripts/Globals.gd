@@ -20,7 +20,7 @@ var pet_status: Pet.PetStatus = Pet.PetStatus.IDLE
 # Player level (starts at 1)
 var player_level: int = 1
 var player_exp: int = 0  # Current EXP
-var exp_per_level: int = 100  # EXP needed per level (can be adjusted)
+var exp_per_level: int = 50  # EXP needed per level (can be adjusted)
 
 # Feed counts per food item (food_index -> feed_count)
 var food_feed_counts: Dictionary = {}
@@ -109,3 +109,122 @@ func increment_feed_count(food_index: int) -> void:
 # --- CHECK IF FOOD ITEM CAN BE FED (max 3 feeds) ---
 func can_feed_food(food_index: int) -> bool:
 	return get_feed_count(food_index) < 3
+
+# --- CHECK FOR OVERDUE TASKS AND UPDATE PET STATUS ---
+func check_tasks_and_update_pet_status() -> void:
+	# Only check if pet is not eating (don't interrupt eating animation)
+	if pet_status == Pet.PetStatus.EATING:
+		return
+	
+	var has_overdue_or_missed = _check_for_overdue_tasks()
+	
+	if has_overdue_or_missed:
+		# Set pet to angry if there are overdue/missed tasks
+		if pet_status != Pet.PetStatus.ANGRY:
+			pet_status = Pet.PetStatus.ANGRY
+			# Update pet node if it exists in the current scene
+			_update_pet_node_status()
+	else:
+		# Set pet to idle if no overdue/missed tasks
+		if pet_status == Pet.PetStatus.ANGRY:
+			pet_status = Pet.PetStatus.IDLE
+			_update_pet_node_status()
+
+# --- CHECK FOR OVERDUE TASKS ---
+func _check_for_overdue_tasks() -> bool:
+	# Load tasks from preferences
+	var tasks_data = Preferences.load_tasks()
+	var academic_tasks = tasks_data.get("academic_tasks", [])
+	var household_tasks = tasks_data.get("household_tasks", [])
+	var errands_tasks = tasks_data.get("errands_tasks", [])
+	
+	var current_time = Time.get_datetime_dict_from_system()
+	
+	# Check all task categories
+	var all_tasks = academic_tasks + household_tasks + errands_tasks
+	
+	for task in all_tasks:
+		# Check if task is not completed
+		if task.status != "completed":
+			# Check if task is missed
+			if task.status == "missed":
+				return true
+			
+			# Check if task is overdue (not completed and past deadline)
+			var deadline = _parse_datetime(task.deadline)
+			if deadline != null and _is_overdue(current_time, deadline):
+				return true
+	
+	return false
+
+# --- PARSE DATETIME STRING ---
+func _parse_datetime(datetime_string: String):
+	var parts = datetime_string.split(" ")
+	if parts.size() < 3:
+		return null
+	
+	var date_parts = parts[0].split("-")
+	var time_parts = parts[1].split(":")
+	
+	if date_parts.size() != 3 or time_parts.size() != 2:
+		return null
+	
+	var hour = int(time_parts[0])
+	var period = parts[2].to_upper()
+	
+	if period == "PM" and hour != 12:
+		hour += 12
+	elif period == "AM" and hour == 12:
+		hour = 0
+	
+	return {
+		"year": int(date_parts[0]),
+		"month": int(date_parts[1]),
+		"day": int(date_parts[2]),
+		"hour": hour,
+		"minute": int(time_parts[1])
+	}
+
+# --- CHECK IF TASK IS OVERDUE ---
+func _is_overdue(current: Dictionary, deadline) -> bool:
+	if deadline == null:
+		return false
+	
+	if current.year > deadline.year:
+		return true
+	elif current.year < deadline.year:
+		return false
+	if current.month > deadline.month:
+		return true
+	elif current.month < deadline.month:
+		return false
+	if current.day > deadline.day:
+		return true
+	elif current.day < deadline.day:
+		return false
+	if current.hour > deadline.hour:
+		return true
+	elif current.hour < deadline.hour:
+		return false
+	if current.minute > deadline.minute:
+		return true
+	return false
+
+# --- UPDATE PET NODE STATUS IN CURRENT SCENE ---
+func _update_pet_node_status() -> void:
+	# Try to find pet node in the current scene tree
+	var scene_tree = Engine.get_main_loop()
+	if not scene_tree:
+		return
+	
+	var root = scene_tree.current_scene
+	if not root:
+		return
+	
+	# Look for pet node (could be named "PET" or "PET2")
+	var pet_node = root.get_node_or_null("PET")
+	if not pet_node:
+		pet_node = root.get_node_or_null("PET2")
+	
+	if pet_node and pet_node is Pet:
+		pet_node.set_status(pet_status)

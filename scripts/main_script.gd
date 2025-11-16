@@ -7,6 +7,9 @@ extends Node2D
 func _ready() -> void:
 	# Update level display when scene loads
 	_update_level_display()
+	
+	# Check for overdue tasks and update pet status
+	Globals.check_tasks_and_update_pet_status()
 
 func _on_settings_pressed() -> void:
 	$Menu.menu_visible = true
@@ -16,6 +19,9 @@ func _on_wardrobe_pressed() -> void:
 
 func _on_fridge_pressed() -> void:
 	SceneTransition.transition_to_scene("res://scenes/fridge.tscn")
+
+func _on_bargraph_pressed() -> void:
+	SceneTransition.transition_to_scene("res://MainTodoPage.tscn")
 
 # --- UPDATE LEVEL DISPLAY ---
 func _update_level_display() -> void:
@@ -34,3 +40,6 @@ func _update_level_display() -> void:
 func _enter_tree() -> void:
 	# Update display when scene becomes active
 	_update_level_display()
+	
+	# Check for overdue tasks and update pet status when returning to main scene
+	Globals.check_tasks_and_update_pet_status()

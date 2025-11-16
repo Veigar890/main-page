@@ -1,0 +1,283 @@
+[gd_scene load_steps=18 format=3 uid="uid://c6les4b7fcu30"]
+
+[ext_resource type="Texture2D" uid="uid://y1ws0uo7qnxx" path="res://buttons/green button hover.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bp7rwpqs0jahe" path="res://progress bars/0%.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://de7hx70smajc3" path="res://progress bars/100%.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://6axa23rv45h2" path="res://words/schoolwork.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cr1nyp0nsn2t7" path="res://buttons/back button normal.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://b1fupewl7r4mk" path="res://buttons/back button hover.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://bbi0t7dkl3j0p" path="res://bg/bg2.jpg" id="7"]
+[ext_resource type="Texture2D" uid="uid://df2r161d71g2r" path="res://buttons/green button pressed.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://b8b7hmyurpeya" path="res://words/chores.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://ba5ssair7mthy" path="res://buttons/back button pressed.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://njewuj8ugpw1" path="res://buttons/green button normal.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://brf7424qgsgg7" path="res://words/errands.png" id="12"]
+[ext_resource type="Script" uid="uid://bbvnt7s88dvci" path="res://MainTodoPage.gd" id="13"]
+[ext_resource type="FontFile" path="res://fonts/GamePausedFont.tres" id="14"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i3sgr"]
+font_size = 35
+font_color = Color(0.21536997, 0.5917734, 0.32941508, 1)
+
+[sub_resource type="StyleBoxFlat" id="2"]
+bg_color = Color(1, 0.392157, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0.392157, 0, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_spu1g"]
+font_size = 26
+
+[node name="MainTodoPage" type="Node2D"]
+scale = Vector2(0.6656773, 0.66524583)
+script = ExtResource("13")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -1.0000038
+offset_right = 1151.0
+offset_bottom = 2047.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.94, 0.94)
+texture = ExtResource("7")
+metadata/_edit_use_anchors_ = true
+
+[node name="OverallProgressLabel" type="Label" parent="."]
+offset_left = 63.0
+offset_top = 342.0
+offset_right = 835.0
+offset_bottom = 412.0
+scale = Vector2(1.5, 1.5)
+pivot_offset = Vector2(170.667, 539.755)
+theme_override_colors/font_color = Color(0.0862745, 0.513726, 0, 1)
+theme_override_fonts/font = ExtResource("14")
+text = "Overall Progress: 0%"
+label_settings = SubResource("LabelSettings_i3sgr")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="OverallProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -37.0
+offset_top = 141.0
+offset_right = 736.0
+offset_bottom = 464.0
+scale = Vector2(1.5, 0.5)
+nine_patch_stretch = true
+stretch_margin_left = 50
+stretch_margin_top = 50
+stretch_margin_right = 50
+stretch_margin_bottom = 50
+texture_under = ExtResource("2")
+texture_progress = ExtResource("3")
+metadata/_edit_use_anchors_ = true
+
+[node name="AcademicButton" type="TextureButton" parent="."]
+offset_left = 100.0
+offset_top = 300.0
+offset_right = 460.0
+offset_bottom = 451.0
+scale = Vector2(2.5, 3.5)
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11")
+texture_pressed = ExtResource("8")
+texture_hover = ExtResource("1")
+metadata/_edit_use_anchors_ = true
+
+[node name="AcademicLabel" type="TextureRect" parent="AcademicButton"]
+clip_contents = true
+layout_mode = 0
+offset_left = 25.2
+offset_top = 29.0286
+offset_right = 1049.2
+offset_bottom = 149.029
+scale = Vector2(0.3, 0.3)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("4")
+metadata/_edit_use_anchors_ = true
+
+[node name="AcademicProgressBar" type="TextureProgressBar" parent="AcademicButton"]
+layout_mode = 0
+offset_left = 24.8
+offset_top = 56.287
+offset_right = 797.8
+offset_bottom = 379.287
+scale = Vector2(0.4, 0.182)
+nine_patch_stretch = true
+stretch_margin_left = 50
+stretch_margin_top = 50
+stretch_margin_right = 50
+stretch_margin_bottom = 50
+texture_under = ExtResource("2")
+texture_progress = ExtResource("3")
+metadata/_edit_use_anchors_ = true
+
+[node name="AcademicPercentLabel" type="Label" parent="AcademicButton/AcademicProgressBar"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -122.0
+offset_top = -156.993
+offset_right = -395.0
+offset_bottom = -156.993
+scale = Vector2(2, 2)
+theme_override_fonts/font = ExtResource("14")
+theme_override_font_sizes/font_size = 28
+text = "0%"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HouseholdButton" type="TextureButton" parent="."]
+offset_left = 100.0
+offset_top = 750.0
+offset_right = 460.0
+offset_bottom = 901.0
+scale = Vector2(2.5, 3.5)
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11")
+texture_pressed = ExtResource("8")
+texture_hover = ExtResource("1")
+metadata/_edit_use_anchors_ = true
+
+[node name="HouseholdLabel" type="TextureRect" parent="HouseholdButton"]
+layout_mode = 0
+offset_left = -87.2
+offset_top = 14.8571
+offset_right = 958.1845
+offset_bottom = 311.01102
+scale = Vector2(0.52, 0.52)
+texture = ExtResource("9")
+expand_mode = 2
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="HouseholdProgressBar" type="TextureProgressBar" parent="HouseholdButton"]
+layout_mode = 0
+offset_left = 24.8
+offset_top = 56.2872
+offset_right = 797.8
+offset_bottom = 379.287
+scale = Vector2(0.4, 0.182)
+nine_patch_stretch = true
+stretch_margin_left = 50
+stretch_margin_top = 50
+stretch_margin_right = 50
+stretch_margin_bottom = 50
+texture_under = ExtResource("2")
+texture_progress = ExtResource("3")
+metadata/_edit_use_anchors_ = true
+
+[node name="HouseholdPercentLabel" type="Label" parent="HouseholdButton/HouseholdProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -122.0
+offset_top = -157.441
+offset_right = -395.0
+offset_bottom = -157.441
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme_override_fonts/font = ExtResource("14")
+theme_override_font_sizes/font_size = 28
+text = "0%"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ErrandsButton" type="TextureButton" parent="."]
+offset_left = 100.0
+offset_top = 1200.0
+offset_right = 460.0
+offset_bottom = 1351.0
+scale = Vector2(2.5, 3.5)
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("11")
+texture_pressed = ExtResource("8")
+texture_hover = ExtResource("1")
+metadata/_edit_use_anchors_ = true
+
+[node name="ErrandsLabel" type="TextureRect" parent="ErrandsButton"]
+layout_mode = 0
+offset_left = -14.4
+offset_top = 27.4286
+offset_right = 1009.6
+offset_bottom = 147.4286
+scale = Vector2(0.38, 0.38)
+texture = ExtResource("12")
+metadata/_edit_use_anchors_ = true
+
+[node name="ErrandsProgressBar" type="TextureProgressBar" parent="ErrandsButton"]
+layout_mode = 0
+offset_left = 24.8
+offset_top = 56.285
+offset_right = 797.8
+offset_bottom = 379.285
+scale = Vector2(0.4, 0.182)
+nine_patch_stretch = true
+stretch_margin_left = 50
+stretch_margin_top = 50
+stretch_margin_right = 50
+stretch_margin_bottom = 50
+texture_under = ExtResource("2")
+texture_progress = ExtResource("3")
+metadata/_edit_use_anchors_ = true
+
+[node name="ErrandsPercentLabel" type="Label" parent="ErrandsButton/ErrandsProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -117.0
+offset_top = -69.06987
+offset_right = -390.0
+offset_bottom = -163.22173
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme_override_fonts/font = ExtResource("14")
+theme_override_font_sizes/font_size = 28
+text = "0%"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="BackButton" type="TextureButton" parent="."]
+offset_left = 850.0
+offset_top = 1650.0
+offset_right = 1350.0
+offset_bottom = 2150.0
+scale = Vector2(0.36, 0.36)
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5")
+texture_pressed = ExtResource("10")
+texture_hover = ExtResource("6")
+metadata/_edit_use_anchors_ = true
+
+[node name="PointsLabel" type="Label" parent="."]
+offset_left = 74.0
+offset_top = 26.0
+offset_right = 574.0
+offset_bottom = 83.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("14")
+theme_override_styles/normal = SubResource("2")
+text = "Total Points: 0"
+label_settings = SubResource("LabelSettings_spu1g")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

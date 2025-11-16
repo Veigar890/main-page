@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WardrobeTextures" load_steps=7 format=3 uid="uid://4uhngddf0dwl"]
+[gd_resource type="Resource" script_class="WardrobeTextures" load_steps=8 format=3 uid="uid://4uhngddf0dwl"]
 
 [ext_resource type="Script" uid="uid://chfthcfee6l62" path="res://scripts/wardrobe_resource.gd" id="1_iaj22"]
 [ext_resource type="Texture2D" uid="uid://bxetj0uxsidix" path="res://assets/wardrobe/accessories/collar.png" id="2_bghba"]
@@ -6,8 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://ciopo1688fj4" path="res://assets/wardrobe/accessories/IMG_4153.PNG" id="4_jylv7"]
 [ext_resource type="Texture2D" uid="uid://bxupmle2sb7e6" path="res://assets/wardrobe/accessories/IMG_4154.PNG" id="5_vx1m8"]
 [ext_resource type="Texture2D" uid="uid://djphep1lpr3ba" path="res://assets/wardrobe/accessories/IMG_4155.PNG" id="6_5uf24"]
+[ext_resource type="Texture2D" uid="uid://dft6jq7mw7e5x" path="res://assets/wardrobe/accessories/IMG_4761.png" id="7_su6a7"]
 
 [resource]
 script = ExtResource("1_iaj22")
-textures = Array[Texture2D]([ExtResource("2_bghba"), ExtResource("3_su6a7"), ExtResource("4_jylv7"), ExtResource("5_vx1m8"), ExtResource("6_5uf24")])
+textures = Array[Texture2D]([ExtResource("2_bghba"), ExtResource("3_su6a7"), ExtResource("4_jylv7"), ExtResource("5_vx1m8"), ExtResource("6_5uf24"), ExtResource("7_su6a7")])
 metadata/_custom_type_script = "uid://chfthcfee6l62"
