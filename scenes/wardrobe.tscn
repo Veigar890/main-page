@@ -1,15 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://bg0tcg0glh35b"]
+[gd_scene load_steps=10 format=3 uid="uid://bg0tcg0glh35b"]
 
 [ext_resource type="Texture2D" uid="uid://git38kn27621" path="res://assets/tamagotchi background.jpeg" id="1_31rhj"]
 [ext_resource type="Script" uid="uid://d21ig51o11spn" path="res://scripts/wardrobe.gd" id="1_bhjf3"]
 [ext_resource type="Texture2D" uid="uid://dbxnnh61veom3" path="res://assets/buttons/IMG_4211.PNG" id="2_5o16b"]
 [ext_resource type="Texture2D" uid="uid://bjr8a24c4semj" path="res://assets/square_noise1.png" id="4_bhjf3"]
-[ext_resource type="Texture2D" uid="uid://bwpg057bgeecd" path="res://assets/pets/hamster.png" id="5_bp60u"]
 [ext_resource type="Texture2D" uid="uid://vmdb124odbt3" path="res://assets/wardrobe/shirt/shirt.png" id="5_xm6he"]
 [ext_resource type="Texture2D" uid="uid://c0htxbkyf8dnn" path="res://assets/wardrobe/skirt/IMG_4178.PNG" id="6_k1sce"]
 [ext_resource type="Texture2D" uid="uid://bxetj0uxsidix" path="res://assets/wardrobe/accessories/collar.png" id="7_dvevn"]
-[ext_resource type="Texture2D" uid="uid://c6c24i4h21c88" path="res://assets/mat.png" id="7_iqlcr"]
 [ext_resource type="Texture2D" uid="uid://bk7skqgfnjnae" path="res://assets/wardrobe/shoes/IMG_4156.PNG" id="8_u6mqe"]
+[ext_resource type="PackedScene" uid="uid://cq0r740318qwh" path="res://scenes/pet.tscn" id="11_k1sce"]
 
 [node name="Wardrobe" type="Node2D"]
 script = ExtResource("1_bhjf3")
@@ -177,15 +176,8 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="PET" type="Sprite2D" parent="."]
-position = Vector2(434, 580)
-texture = ExtResource("5_bp60u")
-
-[node name="Mat" type="Sprite2D" parent="PET"]
-show_behind_parent = true
-position = Vector2(0, 98)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_iqlcr")
+[node name="PET" parent="." instance=ExtResource("11_k1sce")]
+position = Vector2(381, 692)
 
 [connection signal="pressed" from="MainBG/Control/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="MainBG/Control/VBoxContainer2/Shirt" to="." method="_on_shirt_pressed"]

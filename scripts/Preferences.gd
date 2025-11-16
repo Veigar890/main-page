@@ -12,18 +12,18 @@ func save_settings(music_enabled: bool, audio_enabled: bool) -> void:
 	
 	# Load existing config if it exists
 	if FileAccess.file_exists(PREFERENCES_PATH):
-		var error = config.load(PREFERENCES_PATH)
-		if error != OK:
-			push_error("Failed to load preferences: %s" % error_string(error))
+		var load_error = config.load(PREFERENCES_PATH)
+		if load_error != OK:
+			push_error("Failed to load preferences: %s" % error_string(load_error))
 	
 	# Save settings
 	config.set_value(SETTINGS_SECTION, "music_enabled", music_enabled)
 	config.set_value(SETTINGS_SECTION, "audio_enabled", audio_enabled)
 	
 	# Save to file
-	var error = config.save(PREFERENCES_PATH)
-	if error != OK:
-		push_error("Failed to save preferences: %s" % error_string(error))
+	var save_error = config.save(PREFERENCES_PATH)
+	if save_error != OK:
+		push_error("Failed to save preferences: %s" % error_string(save_error))
 
 # --- LOAD SETTINGS ---
 func load_settings() -> Dictionary:
@@ -36,9 +36,9 @@ func load_settings() -> Dictionary:
 		return settings
 	
 	var config = ConfigFile.new()
-	var error = config.load(PREFERENCES_PATH)
-	if error != OK:
-		push_error("Failed to load preferences: %s" % error_string(error))
+	var load_error = config.load(PREFERENCES_PATH)
+	if load_error != OK:
+		push_error("Failed to load preferences: %s" % error_string(load_error))
 		return settings
 	
 	# Load settings with defaults
@@ -55,17 +55,17 @@ func save_wardrobe_selection(category: String, texture_path: String) -> void:
 	
 	# Load existing config if it exists
 	if FileAccess.file_exists(PREFERENCES_PATH):
-		var error = config.load(PREFERENCES_PATH)
-		if error != OK:
-			push_error("Failed to load preferences: %s" % error_string(error))
+		var load_error = config.load(PREFERENCES_PATH)
+		if load_error != OK:
+			push_error("Failed to load preferences: %s" % error_string(load_error))
 	
 	# Save wardrobe selection
 	config.set_value(WARDROBE_SECTION, category, texture_path)
 	
 	# Save to file
-	var error = config.save(PREFERENCES_PATH)
-	if error != OK:
-		push_error("Failed to save wardrobe preferences: %s" % error_string(error))
+	var save_error = config.save(PREFERENCES_PATH)
+	if save_error != OK:
+		push_error("Failed to save wardrobe preferences: %s" % error_string(save_error))
 
 # --- SAVE ALL WARDROBE SELECTIONS ---
 func save_all_wardrobe_selections(wardrobe_selection: Dictionary) -> void:
@@ -73,9 +73,9 @@ func save_all_wardrobe_selections(wardrobe_selection: Dictionary) -> void:
 	
 	# Load existing config if it exists
 	if FileAccess.file_exists(PREFERENCES_PATH):
-		var error = config.load(PREFERENCES_PATH)
-		if error != OK:
-			push_error("Failed to load preferences: %s" % error_string(error))
+		var load_error = config.load(PREFERENCES_PATH)
+		if load_error != OK:
+			push_error("Failed to load preferences: %s" % error_string(load_error))
 	
 	# Save all wardrobe selections
 	for category in wardrobe_selection.keys():
@@ -87,9 +87,9 @@ func save_all_wardrobe_selections(wardrobe_selection: Dictionary) -> void:
 				config.set_value(WARDROBE_SECTION, category, texture_path)
 	
 	# Save to file
-	var error = config.save(PREFERENCES_PATH)
-	if error != OK:
-		push_error("Failed to save wardrobe preferences: %s" % error_string(error))
+	var save_error = config.save(PREFERENCES_PATH)
+	if save_error != OK:
+		push_error("Failed to save wardrobe preferences: %s" % error_string(save_error))
 
 # --- LOAD WARDROBE SELECTIONS ---
 func load_wardrobe_selections() -> Dictionary:
@@ -104,9 +104,9 @@ func load_wardrobe_selections() -> Dictionary:
 		return wardrobe
 	
 	var config = ConfigFile.new()
-	var error = config.load(PREFERENCES_PATH)
-	if error != OK:
-		push_error("Failed to load preferences: %s" % error_string(error))
+	var load_error = config.load(PREFERENCES_PATH)
+	if load_error != OK:
+		push_error("Failed to load preferences: %s" % error_string(load_error))
 		return wardrobe
 	
 	# Load wardrobe selections

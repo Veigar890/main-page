@@ -14,7 +14,12 @@ var wardrobe_selection = {
 var music_enabled: bool = true
 var audio_enabled: bool = true
 
+# Pet status (can be accessed from any scene)
+var pet_status: Pet.PetStatus = Pet.PetStatus.IDLE
+
 func _ready():
+	# Ensure pet status is IDLE on startup
+	pet_status = Pet.PetStatus.IDLE
 	# Load saved preferences
 	_load_preferences()
 

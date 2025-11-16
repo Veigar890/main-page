@@ -1,19 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://c63g47531mikw"]
+[gd_scene load_steps=8 format=3 uid="uid://c63g47531mikw"]
 
 [ext_resource type="Script" uid="uid://c5l126r8ndd4w" path="res://scripts/fridge.gd" id="1_c4248"]
 [ext_resource type="Texture2D" uid="uid://git38kn27621" path="res://assets/tamagotchi background.jpeg" id="2_i0i1l"]
 [ext_resource type="Texture2D" uid="uid://dbxnnh61veom3" path="res://assets/buttons/IMG_4211.PNG" id="3_npr5r"]
-[ext_resource type="Texture2D" uid="uid://dfhlaxeutpkma" path="res://assets/fridge.PNG" id="4_i0i1l"]
+[ext_resource type="Texture2D" uid="uid://ctgeyvfe1hi24" path="res://assets/fridge.png" id="4_npr5r"]
 [ext_resource type="Texture2D" uid="uid://ia8744dr5gs1" path="res://assets/foods/IMG_4684.PNG" id="5_cx14s"]
-[ext_resource type="Texture2D" uid="uid://185y655pfob0" path="res://assets/foods/IMG_4685.PNG" id="6_3xuj1"]
-[ext_resource type="Texture2D" uid="uid://bwpg057bgeecd" path="res://assets/pets/hamster.png" id="6_i0i1l"]
-[ext_resource type="Texture2D" uid="uid://c6c24i4h21c88" path="res://assets/mat.png" id="7_npr5r"]
+[ext_resource type="PackedScene" uid="uid://cq0r740318qwh" path="res://scenes/pet.tscn" id="6_i0i1l"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mq0tr"]
-load_path = "res://.godot/imported/IMG_4745.PNG-009873d1f9ad6d6acc8423879af95f52.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s2lay"]
-load_path = "res://.godot/imported/IMG_4702.PNG-6609eb07f4280c1905b7ae38a1505260.ctex"
+[sub_resource type="SpriteFrames" id="SpriteFrames_v6xy7"]
+animations = []
 
 [node name="Fridge" type="Node2D"]
 script = ExtResource("1_c4248")
@@ -49,76 +44,92 @@ ignore_texture_size = true
 stretch_mode = 4
 metadata/_edit_use_anchors_ = true
 
+[node name="prev" type="TextureButton" parent="MainBG"]
+anchors_preset = -1
+anchor_left = 0.36
+anchor_top = 0.135
+anchor_right = 0.46
+anchor_bottom = 0.23600002
+offset_left = -59.094574
+offset_top = 13.9235
+offset_right = -59.08905
+offset_bottom = 13.459381
+texture_normal = ExtResource("3_npr5r")
+ignore_texture_size = true
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="next" type="TextureButton" parent="MainBG"]
+anchors_preset = -1
+anchor_left = 0.67800003
+anchor_top = 0.136
+anchor_right = 0.77800006
+anchor_bottom = 0.23600002
+offset_left = -7.921173
+offset_top = 12.612442
+offset_right = -7.9155884
+offset_bottom = 12.884384
+texture_normal = ExtResource("3_npr5r")
+ignore_texture_size = true
+stretch_mode = 4
+flip_h = true
+metadata/_edit_use_anchors_ = true
+
 [node name="Fridge" type="Sprite2D" parent="."]
-position = Vector2(360, 600)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("4_i0i1l")
+position = Vector2(381, 692)
+texture = ExtResource("4_npr5r")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Fridge"]
-offset_left = 42.499992
-offset_top = -315.0
-offset_right = 208.75
-offset_bottom = 296.24988
-theme_override_constants/separation = 35
-
-[node name="item1" type="Button" parent="Fridge/VBoxContainer"]
-layout_mode = 2
-text = "
-
-
-
-
-"
+[node name="item1" type="Button" parent="Fridge"]
+offset_left = 60.0
+offset_top = -270.0
+offset_right = 163.0
+offset_bottom = -183.0
+focus_mode = 0
 icon = ExtResource("5_cx14s")
 flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="item2" type="Button" parent="Fridge/VBoxContainer"]
-layout_mode = 2
-text = "
-
-
-
-
-"
-icon = ExtResource("6_3xuj1")
-icon_alignment = 1
-expand_icon = true
-
-[node name="item3" type="Button" parent="Fridge/VBoxContainer"]
-layout_mode = 2
-text = "
-
-
-
-
-"
-icon = SubResource("CompressedTexture2D_mq0tr")
-icon_alignment = 1
-expand_icon = true
-
-[node name="item4" type="Button" parent="Fridge/VBoxContainer"]
-layout_mode = 2
-text = "
-
-
-
-
-"
-icon = SubResource("CompressedTexture2D_s2lay")
+[node name="item2" type="Button" parent="Fridge"]
+offset_left = 60.0
+offset_top = -133.0
+offset_right = 163.0
+offset_bottom = -46.0
+focus_mode = 0
+icon = ExtResource("5_cx14s")
 flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="PET" type="Sprite2D" parent="."]
-position = Vector2(184, 1088)
-texture = ExtResource("6_i0i1l")
+[node name="item3" type="Button" parent="Fridge"]
+offset_left = 60.0
+offset_top = 11.0
+offset_right = 163.0
+offset_bottom = 98.0
+focus_mode = 0
+icon = ExtResource("5_cx14s")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="Mat" type="Sprite2D" parent="PET"]
-show_behind_parent = true
-position = Vector2(0, 98)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_npr5r")
+[node name="item4" type="Button" parent="Fridge"]
+offset_left = 60.0
+offset_top = 165.0
+offset_right = 163.0
+offset_bottom = 252.0
+focus_mode = 0
+icon = ExtResource("5_cx14s")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="PET2" parent="." instance=ExtResource("6_i0i1l")]
+position = Vector2(175, 1114)
+
+[node name="food" type="AnimatedSprite2D" parent="PET2"]
+visible = false
+position = Vector2(11, 2)
+sprite_frames = SubResource("SpriteFrames_v6xy7")
+animation = &""
 
 [connection signal="pressed" from="MainBG/Control/back" to="." method="_on_back_pressed"]

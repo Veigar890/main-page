@@ -1,16 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://birdppelt44d0"]
+[gd_scene load_steps=8 format=3 uid="uid://birdppelt44d0"]
 
-[ext_resource type="Script" uid="uid://132a4rq8203l" path="res://scripts/main_script.gd" id="1_04qyp"]
+[ext_resource type="Script" uid="uid://132a4rq8203l" path="res://scripts/main_script.gd" id="1_fws66"]
 [ext_resource type="Texture2D" uid="uid://git38kn27621" path="res://assets/tamagotchi background.jpeg" id="2_j7wrs"]
 [ext_resource type="Texture2D" uid="uid://dbxnnh61veom3" path="res://assets/buttons/IMG_4211.PNG" id="3_fws66"]
 [ext_resource type="Texture2D" uid="uid://d28f8v6uxbhhe" path="res://assets/buttons/IMG_4617.PNG" id="4_3m5ht"]
-[ext_resource type="Texture2D" uid="uid://bwpg057bgeecd" path="res://assets/pets/hamster.png" id="4_hh0fu"]
 [ext_resource type="PackedScene" uid="uid://cpdh72110uxup" path="res://scenes/menu.tscn" id="5_3m5ht"]
 [ext_resource type="Texture2D" uid="uid://dvnuic24rirmy" path="res://assets/buttons/IMG_4615.PNG" id="5_dubn7"]
-[ext_resource type="Texture2D" uid="uid://c6c24i4h21c88" path="res://assets/mat.png" id="5_j7wrs"]
+[ext_resource type="PackedScene" uid="uid://cq0r740318qwh" path="res://scenes/pet.tscn" id="7_hh0fu"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_04qyp")
+script = ExtResource("1_fws66")
 metadata/_edit_use_anchors_ = true
 
 [node name="MainBG" type="Sprite2D" parent="."]
@@ -80,18 +79,16 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="PET" type="Sprite2D" parent="."]
-position = Vector2(360, 630)
-texture = ExtResource("4_hh0fu")
-
-[node name="Mat" type="Sprite2D" parent="PET"]
-show_behind_parent = true
-position = Vector2(0, 98)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_j7wrs")
+[node name="TextureProgressBar" type="TextureProgressBar" parent="MainBG/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Menu" parent="." instance=ExtResource("5_3m5ht")]
 visible = false
+
+[node name="PET" parent="." instance=ExtResource("7_hh0fu")]
+position = Vector2(360, 704)
 
 [connection signal="pressed" from="MainBG/Control/ButtonLayout/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MainBG/Control/ButtonLayout/Wardrobe" to="." method="_on_wardrobe_pressed"]
