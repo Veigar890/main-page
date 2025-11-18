@@ -141,6 +141,7 @@ func is_overdue(current, deadline):
 	return false
 
 func _on_add_pressed():
+	AudioManager.play_click()
 	print("Opening add task popup...")
 	popup.visible = true
 	task_name_input.text = ""
@@ -150,10 +151,12 @@ func _on_add_pressed():
 	task_name_input.grab_focus()
 
 func _on_cancel_pressed():
+	AudioManager.play_click()
 	print("=== CANCEL PRESSED ===")
 	popup.visible = false
 
 func _on_confirm_add_pressed():
+	AudioManager.play_click()
 	print("=== ADD BUTTON PRESSED ===")
 	
 	var task_name = task_name_input.text.strip_edges()
@@ -247,6 +250,7 @@ func _on_confirm_add_pressed():
 	print("🎉 SUCCESS! Task created: ", task_name)
 
 func _on_back_pressed():
+	AudioManager.play_click()
 	if main_page:
 		main_page.update_all_progress()
 		main_page.visible = true

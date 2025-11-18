@@ -1,0 +1,155 @@
+[gd_scene load_steps=8 format=3 uid="uid://bcmhgw6sxkdm3"]
+
+[ext_resource type="Texture2D" uid="uid://ba4h3xobdkc01" path="res://bg.jpeg" id="1_i26rj"]
+[ext_resource type="Script" uid="uid://cq526l088j6r8" path="res://scripts/main_menu.gd" id="1_qoqlk"]
+[ext_resource type="Texture2D" uid="uid://b0bgujdh2y3jd" path="res://main_title.png" id="2_h7a2f"]
+[ext_resource type="Texture2D" uid="uid://c1uxypja3iegj" path="res://button.png" id="3_qoqlk"]
+[ext_resource type="PackedScene" uid="uid://cpdh72110uxup" path="res://scenes/menu.tscn" id="4_7bpxu"]
+[ext_resource type="FontFile" uid="uid://4srv5p332lyy" path="res://fonts/vertopal.com_PIXELITE.ttf" id="5_7r1g0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cqjrg"]
+font = ExtResource("5_7r1g0")
+font_size = 35
+font_color = Color(0.27752772, 0.27752772, 0.27752772, 1)
+
+[node name="Panel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qoqlk")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.16668701
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_i26rj")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="MainTitle" type="Sprite2D" parent="."]
+position = Vector2(360.00003, 254)
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("2_h7a2f")
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.156
+anchor_top = 0.319
+anchor_right = 0.85300004
+anchor_bottom = 0.469
+offset_left = -0.31999207
+offset_top = -24.319977
+offset_right = -167.16003
+offset_bottom = -88.32001
+scale = Vector2(1.5, 1.5)
+focus_mode = 0
+icon = ExtResource("3_qoqlk")
+flat = true
+
+[node name="Label" type="Label" parent="Play"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PLAY"
+label_settings = SubResource("LabelSettings_cqjrg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.156
+anchor_top = 0.319
+anchor_right = 0.85300004
+anchor_bottom = 0.469
+offset_left = -0.3199997
+offset_top = 183.68
+offset_right = -167.16003
+offset_bottom = 119.67999
+scale = Vector2(1.5, 1.5)
+focus_mode = 0
+icon = ExtResource("3_qoqlk")
+flat = true
+
+[node name="Label2" type="Label" parent="Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Settings"
+label_settings = SubResource("LabelSettings_cqjrg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stats" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.156
+anchor_top = 0.319
+anchor_right = 0.85300004
+anchor_bottom = 0.469
+offset_left = -0.31999207
+offset_top = 383.68
+offset_right = -167.16003
+offset_bottom = 319.68
+scale = Vector2(1.5, 1.5)
+focus_mode = 0
+icon = ExtResource("3_qoqlk")
+flat = true
+
+[node name="Label3" type="Label" parent="Stats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Stats"
+label_settings = SubResource("LabelSettings_cqjrg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.156
+anchor_top = 0.319
+anchor_right = 0.85300004
+anchor_bottom = 0.469
+offset_left = -0.31999207
+offset_top = 583.68
+offset_right = -167.16003
+offset_bottom = 519.68
+scale = Vector2(1.5, 1.5)
+focus_mode = 0
+icon = ExtResource("3_qoqlk")
+flat = true
+
+[node name="Label4" type="Label" parent="Exit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Exit"
+label_settings = SubResource("LabelSettings_cqjrg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Menu" parent="." instance=ExtResource("4_7bpxu")]
+visible = false

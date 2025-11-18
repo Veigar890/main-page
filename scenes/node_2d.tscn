@@ -149,4 +149,5 @@ frame_progress = 0.0
 [connection signal="pressed" from="MainBG/Control/ButtonLayout/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MainBG/Control/ButtonLayout/Wardrobe" to="." method="_on_wardrobe_pressed"]
 [connection signal="pressed" from="MainBG/Control/ButtonLayout/Fridge" to="." method="_on_fridge_pressed"]
+[connection signal="pressed" from="MainBG/Control/ButtonLayout/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="MainBG/Control/Bargraph" to="." method="_on_bargraph_pressed"]

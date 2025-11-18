@@ -12,16 +12,25 @@ func _ready() -> void:
 	Globals.check_tasks_and_update_pet_status()
 
 func _on_settings_pressed() -> void:
+	AudioManager.play_click()
 	$Menu.menu_visible = true
 
 func _on_wardrobe_pressed() -> void:
+	AudioManager.play_click()
 	SceneTransition.transition_to_scene("res://scenes/wardrobe.tscn")
 
 func _on_fridge_pressed() -> void:
+	AudioManager.play_click()
 	SceneTransition.transition_to_scene("res://scenes/fridge.tscn")
 
 func _on_bargraph_pressed() -> void:
+	AudioManager.play_click()
+	Globals.task_return_scene_path = "res://scenes/node_2d.tscn"
 	SceneTransition.transition_to_scene("res://MainTodoPage.tscn")
+
+func _on_back_pressed() -> void:
+	AudioManager.play_click()
+	SceneTransition.transition_to_scene("res://MainMenu.tscn")
 
 # --- UPDATE LEVEL DISPLAY ---
 func _update_level_display() -> void:

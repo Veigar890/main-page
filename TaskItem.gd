@@ -92,6 +92,7 @@ func update_display():
 	print("Task displayed: ", task_data.name, " | Status: ", task_data.status)
 
 func _on_action_button_pressed():
+	AudioManager.play_click()
 	print("=== ACTION BUTTON PRESSED ===")
 	print("Current status: ", task_data.status)
 	

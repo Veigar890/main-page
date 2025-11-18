@@ -13,6 +13,7 @@ func _ready():
 	
 	# Load saved preferences
 	_load_preferences()
+	AudioManager.ensure_music_state()
 	
 	# Connect checkbutton signals
 	if music_checkbutton:
@@ -29,14 +30,16 @@ func _load_preferences() -> void:
 
 # --- HANDLE SETTINGS TOGGLES ---
 func _on_music_toggled(button_pressed: bool) -> void:
+	AudioManager.play_click()
 	Globals.music_enabled = button_pressed
 	Globals.save_settings()
-	# TODO: Apply music setting (e.g., AudioServer.set_bus_mute())
+	AudioManager.ensure_music_state()
 
 func _on_audio_toggled(button_pressed: bool) -> void:
+	AudioManager.play_click()
 	Globals.audio_enabled = button_pressed
 	Globals.save_settings()
-	# TODO: Apply audio setting (e.g., AudioServer.set_bus_mute())
 
 func _on_texture_button_pressed() -> void:
+	AudioManager.play_click()
 	menu_visible = false

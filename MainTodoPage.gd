@@ -30,6 +30,7 @@ func _ready():
 	print("=== MainTodoPage Ready ===")
 
 func _on_academic_pressed():
+	AudioManager.play_click()
 	var scene = load("res://TaskDetailPage.tscn").instantiate()
 	scene.category = "Academic Tasks"
 	scene.tasks = academic_tasks
@@ -38,6 +39,7 @@ func _on_academic_pressed():
 	visible = false
 
 func _on_household_pressed():
+	AudioManager.play_click()
 	var scene = load("res://TaskDetailPage.tscn").instantiate()
 	scene.category = "Household Chores"
 	scene.tasks = household_tasks
@@ -46,6 +48,7 @@ func _on_household_pressed():
 	visible = false
 
 func _on_errands_pressed():
+	AudioManager.play_click()
 	var scene = load("res://TaskDetailPage.tscn").instantiate()
 	scene.category = "Errands"
 	scene.tasks = errands_tasks
@@ -54,7 +57,9 @@ func _on_errands_pressed():
 	visible = false
 
 func _on_back_pressed():
-	SceneTransition.transition_to_scene("res://scenes/node_2d.tscn")
+	AudioManager.play_click()
+	var target_scene = Globals.task_return_scene_path if Globals.task_return_scene_path != "" else "res://scenes/node_2d.tscn"
+	SceneTransition.transition_to_scene(target_scene)
 
 func calculate_points(deadline_string):
 	print("=== CALCULATING POINTS ===")

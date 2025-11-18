@@ -17,6 +17,9 @@ var audio_enabled: bool = true
 # Pet status (can be accessed from any scene)
 var pet_status: Pet.PetStatus = Pet.PetStatus.IDLE
 
+# Scene to return to when closing task list
+var task_return_scene_path: String = "res://scenes/node_2d.tscn"
+
 # Player level (starts at 1)
 var player_level: int = 1
 var player_exp: int = 0  # Current EXP
@@ -28,6 +31,7 @@ var food_feed_counts: Dictionary = {}
 func _ready():
 	# Ensure pet status is IDLE on startup
 	pet_status = Pet.PetStatus.IDLE
+	task_return_scene_path = "res://scenes/node_2d.tscn"
 	# Load saved preferences
 	_load_preferences()
 
@@ -146,13 +150,19 @@ func _check_for_overdue_tasks() -> bool:
 	for task in all_tasks:
 		# Check if task is not completed
 		if task.status != "completed":
+			var deadline = _parse_datetime(task.deadline)
+			if deadline == null:
+				continue
+			
+			if not _is_same_day(current_time, deadline):
+				continue
+			
 			# Check if task is missed
 			if task.status == "missed":
 				return true
 			
 			# Check if task is overdue (not completed and past deadline)
-			var deadline = _parse_datetime(task.deadline)
-			if deadline != null and _is_overdue(current_time, deadline):
+			if _is_overdue(current_time, deadline):
 				return true
 	
 	return false
@@ -209,6 +219,10 @@ func _is_overdue(current: Dictionary, deadline) -> bool:
 	if current.minute > deadline.minute:
 		return true
 	return false
+
+# --- CHECK IF TWO DATES SHARE THE SAME CALENDAR DAY ---
+func _is_same_day(first: Dictionary, second: Dictionary) -> bool:
+	return first.year == second.year and first.month == second.month and first.day == second.day
 
 # --- UPDATE PET NODE STATUS IN CURRENT SCENE ---
 func _update_pet_node_status() -> void:
