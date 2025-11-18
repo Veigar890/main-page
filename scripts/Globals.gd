@@ -136,36 +136,48 @@ func check_tasks_and_update_pet_status() -> void:
 
 # --- CHECK FOR OVERDUE TASKS ---
 func _check_for_overdue_tasks() -> bool:
-	# Load tasks from preferences
 	var tasks_data = Preferences.load_tasks()
-	var academic_tasks = tasks_data.get("academic_tasks", [])
-	var household_tasks = tasks_data.get("household_tasks", [])
-	var errands_tasks = tasks_data.get("errands_tasks", [])
+	var academic_tasks: Array = tasks_data.get("academic_tasks", [])
+	var household_tasks: Array = tasks_data.get("household_tasks", [])
+	var errands_tasks: Array = tasks_data.get("errands_tasks", [])
+	var total_points: int = tasks_data.get("total_points", 0)
 	
 	var current_time = Time.get_datetime_dict_from_system()
+	var has_today_issue = false
+	var tasks_changed = false
+	var task_arrays = [academic_tasks, household_tasks, errands_tasks]
 	
-	# Check all task categories
-	var all_tasks = academic_tasks + household_tasks + errands_tasks
-	
-	for task in all_tasks:
-		# Check if task is not completed
-		if task.status != "completed":
-			var deadline = _parse_datetime(task.deadline)
+	for task_array in task_arrays:
+		for i in range(task_array.size()):
+			var task = task_array[i]
+			if not (task is Dictionary):
+				continue
+			
+			var status = task.get("status", "")
+			if status == "completed":
+				continue
+			
+			var deadline_string = task.get("deadline", "")
+			var deadline = _parse_datetime(deadline_string)
 			if deadline == null:
 				continue
 			
-			if not _is_same_day(current_time, deadline):
-				continue
+			var overdue = _is_overdue(current_time, deadline)
+			var same_day = _is_same_day(current_time, deadline)
 			
-			# Check if task is missed
-			if task.status == "missed":
-				return true
+			if overdue and status != "missed":
+				task["status"] = "missed"
+				task_array[i] = task
+				tasks_changed = true
+				status = "missed"
 			
-			# Check if task is overdue (not completed and past deadline)
-			if _is_overdue(current_time, deadline):
-				return true
+			if same_day and (overdue or status == "missed"):
+				has_today_issue = true
 	
-	return false
+	if tasks_changed:
+		Preferences.save_tasks(academic_tasks, household_tasks, errands_tasks, total_points)
+	
+	return has_today_issue
 
 # --- PARSE DATETIME STRING ---
 func _parse_datetime(datetime_string: String):

@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://njewuj8ugpw1" path="res://buttons/green button normal.png" id="11"]
 [ext_resource type="Texture2D" uid="uid://brf7424qgsgg7" path="res://words/errands.png" id="12"]
 [ext_resource type="Script" uid="uid://bbvnt7s88dvci" path="res://MainTodoPage.gd" id="13"]
-[ext_resource type="FontFile" path="res://fonts/GamePausedFont.tres" id="14"]
+[ext_resource type="FontFile" uid="uid://q8rs47vfd8om" path="res://fonts/GamePausedFont.tres" id="14"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i3sgr"]
 font_size = 35
