@@ -2,4 +2,5 @@
 .godot/
 /android/
 .cursorrules
-.builds/
+.builds/Android
+.builds/Windows
