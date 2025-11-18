@@ -1,9 +1,21 @@
-[gd_resource type="FontFile" load_steps=2 format=2]
+[gd_resource type="FontFile" load_steps=2 format=3 uid="uid://q8rs47vfd8om"]
 
-[ext_resource path="res://fonts/vertopal.com_PIXELITE.ttf" type="FontFile" id=1]
+[ext_resource type="FontFile" uid="uid://4srv5p332lyy" path="res://fonts/vertopal.com_PIXELITE.ttf" id="1"]
 
 [resource]
-size = 36
-outline_size = 36
-outline_color = Color( 0.784314, 0.784314, 0.784314, 0 )
-font_data = ExtResource( 1 )
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/50/0/ascent = 0.0
+cache/0/50/0/descent = 0.0
+cache/0/50/0/underline_position = 0.0
+cache/0/50/0/underline_thickness = 0.0
+cache/0/50/0/scale = 1.0
